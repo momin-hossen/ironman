@@ -18,6 +18,7 @@
                         <thead>
                           <tr>
                             <th>SL. No</th>
+                            <th>ID. No</th>
                             <th>Name</th>
                             <th>Email Address</th>
                             <th>Created At</th>
@@ -26,10 +27,15 @@
                         <tbody>
                         @foreach($users as $user)
                           <tr>
-                            <th>{{ $user->id }}</th>
-                            <th>{{ $user->name }}</th>
-                            <th>{{ $user->email }}</th>
-                            <th>{{ $user->created_at }}</th>
+                            <td>{{ $loop->index + 1 }}</td>
+                            <td>{{ $user->id }}</td>
+                            <td>{{ Str::title($user->name) }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>
+                                <li>Date: {{ $user->created_at->format('d/m/Y') }}</li>
+                                <li>Time: {{ $user->created_at->format('h:i:s:A') }}</li>
+                                <li>{{ $user->created_at->diffForHumans() }}</li>
+                            </td>
                           </tr>
                         @endforeach
                         </tbody>
