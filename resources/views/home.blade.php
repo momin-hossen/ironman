@@ -14,7 +14,26 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <table class="table table-dark table-striped">
+                        <thead>
+                          <tr>
+                            <th>SL. No</th>
+                            <th>Name</th>
+                            <th>Email Address</th>
+                            <th>Created At</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($users as $user)
+                          <tr>
+                            <th>{{ $user->id }}</th>
+                            <th>{{ $user->name }}</th>
+                            <th>{{ $user->email }}</th>
+                            <th>{{ $user->created_at }}</th>
+                          </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
