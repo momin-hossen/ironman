@@ -12,6 +12,13 @@
                     Add Category
                 </div>
                 <div class="card-body">
+                    @if ($errors->all())
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </div> 
+                    @endif
                     <form method="POST" action="{{ url('add/category/post') }}">
                         @csrf
                         <div class="form-group mb-3">
