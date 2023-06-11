@@ -32,7 +32,7 @@
                     <ul class="navbar-nav me-auto">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Reserved1</a>
+                                <a class="nav-link" href="{{ url('add/category') }}">Add Category</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Reserved2</a>
