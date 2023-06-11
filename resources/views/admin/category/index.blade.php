@@ -12,6 +12,12 @@
                     Add Category
                 </div>
                 <div class="card-body">
+                    @if (session('succss_status'))
+                        <div class="alert alert-success">
+                            {{ session('succss_status') }}
+                        </div>    
+                    @endif
+
                     @if ($errors->all())
                         <div class="alert alert-danger">
                             @foreach ($errors->all() as $error)

@@ -20,7 +20,7 @@ class CategoryController extends Controller
             'user_id' => Auth::user()->id,
             'created_at' => Carbon::now()
         ]);
-        echo "done";
+        return back()->with('succss_status', $request->category_name . ' category added successfully!');
     }
     
 }
