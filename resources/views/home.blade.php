@@ -5,7 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">
+                    {{ __('Dashboard') }}
+                    <h1>Total users: {{ $total_users }}</h1>
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -27,7 +30,8 @@
                         <tbody>
                         @foreach($users as $user)
                           <tr>
-                            <td>{{ $loop->index + 1 }}</td>
+                            {{-- <td>{{ $loop->index + 1 }}</td> --}}
+                            <td>{{ $users->firstItem() + $loop->index }}</td>
                             <td>{{ $user->id }}</td>
                             <td>{{ Str::title($user->name) }}</td>
                             <td>{{ $user->email }}</td>
@@ -40,6 +44,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    {{  $users->links() }}
                 </div>
             </div>
         </div>
