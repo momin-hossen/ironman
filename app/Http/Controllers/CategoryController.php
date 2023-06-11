@@ -11,7 +11,9 @@ use Auth;
 class CategoryController extends Controller
 {
     public function addcategory(){
-        return view('admin.category.index');
+        return view('admin.category.index',[
+            'categories' => Category::all()
+        ]);
     }
     public function addcategorypost(CategoryForm $request){
         Category::insert([

@@ -4,8 +4,36 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-
-        </div>    
+            <div class="card">
+                <div class="card-header">
+                    List Category
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Serial No.</th>
+                                <th>Category Name</th>
+                                <th>Category Description</th>
+                                <th>Category Created By</th>
+                                <th>Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($categories as $category)
+                            <tr>
+                                <td>{{ $loop->index + 1 }}</td>
+                                <td>{{ $category->category_name }}</td>
+                                <td>{{ $category->category_description }}</td>
+                                <td>{{ App\Models\User::find($category->user_id)->name }}</td>
+                                <td>{{ $category->created_at->format('d/m/y  h:i:s A') }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>   
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
