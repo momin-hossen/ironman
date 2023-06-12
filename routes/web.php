@@ -20,8 +20,9 @@ Route::get('contact', [FrontendController::class, 'contact'])->name('contact');
 Route::get('about', [FrontendController::class, 'about'])->name('about');
 
 
-Route::get('add/category', [CategoryController::class, 'addcategory'])->name('addcategory');
-Route::post('add/category/post', [CategoryController::class, 'addcategorypost'])->name('addcategorypost');
+Route::get('add/category', [CategoryController::class, 'addcategory']);
+Route::post('add/category/post', [CategoryController::class, 'addcategorypost']);
+Route::get('delete/category/{category_id}', [CategoryController::class, 'deletecategory']);
 
 
 Auth::routes();

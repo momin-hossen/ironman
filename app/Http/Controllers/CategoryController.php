@@ -24,5 +24,9 @@ class CategoryController extends Controller
         ]);
         return back()->with('succss_status', $request->category_name . ' category added successfully!');
     }
+    public function deletecategory($category_id){
+        Category::find($category_id)->delete();
+        return back()->with('delete_status', 'Your category deleted successfully!');
+    }
     
 }

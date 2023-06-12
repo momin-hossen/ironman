@@ -9,6 +9,11 @@
                     List Category
                 </div>
                 <div class="card-body">
+                    @if (session('delete_status'))
+                        <div class="alert alert-danger">
+                            {{ session('delete_status') }}
+                        </div>
+                    @endif
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -17,18 +22,29 @@
                                 <th>Category Description</th>
                                 <th>Category Created By</th>
                                 <th>Created At</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $category)
+                            @forelse ($categories as $category)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $category->category_name }}</td>
                                 <td>{{ $category->category_description }}</td>
                                 <td>{{ App\Models\User::find($category->user_id)->name }}</td>
                                 <td>{{ $category->created_at->format('d/m/y  h:i:s A') }}</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-info btn-sm">Edit</button>
+                                        <a href="{{ url('delete/category') }}/{{ $category->id }}" type="button" class="btn btn-danger btn-sm">Delete</a>
+                                    </div>
+                                </td>
                             </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="50" class="text-center text-danger">No Data available</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
