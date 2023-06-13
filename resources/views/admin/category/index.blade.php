@@ -35,7 +35,7 @@
                                 <td>{{ $category->created_at->format('d/m/y  h:i:s A') }}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-info btn-sm">Edit</button>
+                                        <a href="{{ url('edit/category') }}/{{ $category->id }}" type="button" class="btn btn-info btn-sm">Edit</a>
                                         <a href="{{ url('delete/category') }}/{{ $category->id }}" type="button" class="btn btn-danger btn-sm">Delete</a>
                                     </div>
                                 </td>

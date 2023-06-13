@@ -28,5 +28,19 @@ class CategoryController extends Controller
         Category::find($category_id)->delete();
         return back()->with('delete_status', 'Your category deleted successfully!');
     }
-    
+    public function editcategory($category_id){
+        return view('admin.category.edit', [
+            'category_info' => Category::find($category_id)
+        ]);
+    }
+    public function editcategorypost(Request $request){
+        $request->validate([
+            'category_name' => 'unique:categories,category_name,'. $request->category_id
+        ]);
+        Category::find($request->category_id)->update([
+            'category_name' => $request->category_name,
+            'category_description' => $request->category_description
+        ]);
+        return back();
+    }
 }

@@ -23,6 +23,8 @@ Route::get('about', [FrontendController::class, 'about'])->name('about');
 Route::get('add/category', [CategoryController::class, 'addcategory']);
 Route::post('add/category/post', [CategoryController::class, 'addcategorypost']);
 Route::get('delete/category/{category_id}', [CategoryController::class, 'deletecategory']);
+Route::get('edit/category/{category_id}', [CategoryController::class, 'editcategory']);
+Route::post('edit/category/post', [CategoryController::class, 'editcategorypost']);
 
 
 Auth::routes();
