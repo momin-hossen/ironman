@@ -25,6 +25,8 @@ Route::post('add/category/post', [CategoryController::class, 'addcategorypost'])
 Route::get('delete/category/{category_id}', [CategoryController::class, 'deletecategory']);
 Route::get('edit/category/{category_id}', [CategoryController::class, 'editcategory']);
 Route::post('edit/category/post', [CategoryController::class, 'editcategorypost']);
+Route::get('restore/category/{category_id}', [CategoryController::class, 'restorecategory']);
+Route::get('force/delete/category/{category_id}', [CategoryController::class, 'forcedeletecategory']);
 
 
 Auth::routes();

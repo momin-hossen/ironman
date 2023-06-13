@@ -17,6 +17,7 @@ return new class extends Migration
             $table->longText('category_description');
             $table->integer('user_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

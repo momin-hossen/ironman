@@ -13,19 +13,7 @@
                         <li><a href="{{ url('add/category') }}">Add Category</a> / </li>
                         <li class="active"> {{ $category_info->category_name }}</li>
                     </ol>
-                    {{-- @if (session('succss_status'))
-                        <div class="alert alert-success">
-                            {{ session('succss_status') }}
-                        </div>    
-                    @endif
-
-                    @if ($errors->all())
-                        <div class="alert alert-danger">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </div> 
-                    @endif --}}
+                    
                     <form method="POST" action="{{ url('edit/category/post') }}">
                         @csrf
                         <div class="form-group mb-3">

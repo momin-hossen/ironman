@@ -6,13 +6,18 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    List Category
+                    List Category (Active)
                 </div>
                 <div class="card-body">
                     @if (session('delete_status'))
                         <div class="alert alert-danger">
                             {{ session('delete_status') }}
                         </div>
+                    @endif
+                    @if (session('edit_status'))
+                        <div class="alert alert-success">
+                            {{ session('edit_status') }}
+                        </div>    
                     @endif
                     <table class="table table-bordered">
                         <thead>
@@ -37,6 +42,56 @@
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="{{ url('edit/category') }}/{{ $category->id }}" type="button" class="btn btn-info btn-sm">Edit</a>
                                         <a href="{{ url('delete/category') }}/{{ $category->id }}" type="button" class="btn btn-danger btn-sm">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="50" class="text-center text-danger">No Data available</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card mt-5">
+                <div class="card-header bg-danger text-light">
+                    List Category (Deleted)
+                </div>
+                <div class="card-body">
+                    @if (session('restore_status'))
+                        <div class="alert alert-success">
+                            {{ session('restore_status') }}
+                        </div>   
+                    @endif
+                    @if (session('forcedelete_status '))
+                        <div class="alert alert-danger">
+                            {{ session('forcedelete_status ') }}
+                        </div>   
+                    @endif
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Serial No.</th>
+                                <th>Category Name</th>
+                                <th>Category Description</th>
+                                <th>Category Created By</th>
+                                <th>Created At</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($deleted_categories as $deleted_category)
+                            <tr>
+                                <td>{{ $loop->index + 1 }}</td>
+                                <td>{{ $deleted_category->category_name }}</td>
+                                <td>{{ $deleted_category->category_description }}</td>
+                                <td>{{ App\Models\User::find($category->user_id)->name }}</td>
+                                <td>{{ $deleted_category->created_at->format('d/m/y  h:i:s A') }}</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a href="{{ url('force/delete/category') }}/{{ $deleted_category->id }}" type="button" class="btn btn-danger btn-sm">F.D</a>
+                                        <a href="{{ url('restore/category') }}/{{ $deleted_category->id }}" type="button" class="btn btn-success btn-sm">Restore</a>
                                     </div>
                                 </td>
                             </tr>

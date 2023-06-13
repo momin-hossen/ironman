@@ -12,7 +12,8 @@ class CategoryController extends Controller
 {
     public function addcategory(){
         return view('admin.category.index',[
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'deleted_categories' => Category::onlyTrashed()->get()
         ]);
     }
     public function addcategorypost(CategoryForm $request){
@@ -41,6 +42,14 @@ class CategoryController extends Controller
             'category_name' => $request->category_name,
             'category_description' => $request->category_description
         ]);
-        return back();
+        return redirect('add/category')->with('edit_status', 'Your category edited successfully!');
+    }
+    public function restorecategory($category_id){
+        Category::withTrashed()->find($category_id)->restore();
+        return back()->with('restore_status', 'Your category restored successfully!');
+    }
+    public function forcedeletecategory($category_id){
+        Category::withTrashed()->find($category_id)->forceDelete();
+        return back()->with('forcedelete_status', 'Your category permanently deleted!');
     }
 }
