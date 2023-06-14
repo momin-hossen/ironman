@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,12 @@ Route::get('edit/category/{category_id}', [CategoryController::class, 'editcateg
 Route::post('edit/category/post', [CategoryController::class, 'editcategorypost']);
 Route::get('restore/category/{category_id}', [CategoryController::class, 'restorecategory']);
 Route::get('force/delete/category/{category_id}', [CategoryController::class, 'forcedeletecategory']);
+
+
+
+Route::get('profile', [ProfileController::class, 'profile']);
+Route::post('edit/profile/post', [ProfileController::class, 'editprofilepost']);
+Route::post('edit/password/post', [ProfileController::class, 'editpasswordpost']);
 
 
 Auth::routes();

@@ -86,7 +86,7 @@
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $deleted_category->category_name }}</td>
                                 <td>{{ $deleted_category->category_description }}</td>
-                                <td>{{ App\Models\User::find($category->user_id)->name }}</td>
+                                <td>{{ App\Models\User::find($deleted_category->user_id)->name }}</td>
                                 <td>{{ $deleted_category->created_at->format('d/m/y  h:i:s A') }}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
