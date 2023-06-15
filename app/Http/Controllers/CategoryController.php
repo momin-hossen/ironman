@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CategoryForm;
 use App\Models\Category;
 use Carbon\Carbon;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -57,5 +57,12 @@ class CategoryController extends Controller
     public function forcedeletecategory($category_id){
         Category::withTrashed()->find($category_id)->forceDelete();
         return back()->with('forcedelete_status', 'Your category permanently deleted!');
+    }
+
+    public function markdelete(Request $request){
+        foreach ($request->category_id as $cat_id) {
+            Category::find($cat_id)->delete();
+        }
+        return back();
     }
 }

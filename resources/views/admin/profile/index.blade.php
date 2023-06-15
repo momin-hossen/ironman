@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row"> 
+    <div class="row "> 
         <div class="col-md-4 m-auto">
             @error('name')
                 <div class="alert alert-danger">
@@ -15,8 +15,8 @@
                 {{ session('name_change_status') }}
             </div>
             @endif
-            <div class="card">
-                <div class="card-header bg-info text-light">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-header bg-success text-light">
                     Name Edit
                 </div>
                 <div class="card-body">
@@ -49,7 +49,7 @@
                     {{ $message }}
                 </div>
             @enderror
-            <div class="card">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
                 <div class="card-header bg-success text-light">
                     Change Password
                 </div>

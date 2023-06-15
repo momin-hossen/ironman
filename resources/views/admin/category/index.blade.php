@@ -19,39 +19,47 @@
                             {{ session('edit_status') }}
                         </div>    
                     @endif
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Serial No.</th>
-                                <th>Category Name</th>
-                                <th>Category Description</th>
-                                <th>Category Created By</th>
-                                <th>Created At</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($categories as $category)
-                            <tr>
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $category->category_name }}</td>
-                                <td>{{ $category->category_description }}</td>
-                                <td>{{ App\Models\User::find($category->user_id)->name }}</td>
-                                <td>{{ $category->created_at->format('d/m/y  h:i:s A') }}</td>
-                                <td>
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="{{ url('edit/category') }}/{{ $category->id }}" type="button" class="btn btn-info btn-sm">Edit</a>
-                                        <a href="{{ url('delete/category') }}/{{ $category->id }}" type="button" class="btn btn-danger btn-sm">Delete</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            @empty
+                    <form method="post" action="{{ url('mark/delete') }}">
+                        @csrf
+                        <table class="table table-bordered">
+                            <thead>
                                 <tr>
-                                    <td colspan="50" class="text-center text-danger">No Data available</td>
+                                    <th>Mark</th>
+                                    <th>Serial No.</th>
+                                    <th>Category Name</th>
+                                    <th>Category Description</th>
+                                    <th>Category Created By</th>
+                                    <th>Created At</th>
+                                    <th>Action</th>
                                 </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @forelse ($categories as $category)
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="category_id[]" value="{{ $category->id }}">
+                                    </td>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $category->category_name }}</td>
+                                    <td>{{ $category->category_description }}</td>
+                                    <td>{{ App\Models\User::find($category->user_id)->name }}</td>
+                                    <td>{{ $category->created_at->format('d/m/y  h:i:s A') }}</td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a href="{{ url('edit/category') }}/{{ $category->id }}" type="button" class="btn btn-info btn-sm">Edit</a>
+                                            <a href="{{ url('delete/category') }}/{{ $category->id }}" type="button" class="btn btn-danger btn-sm">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="50" class="text-center text-danger">No Data available</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-danger btn-sm">Mark Deleted</button>
+                    </form>
                 </div>
             </div>
             <div class="card mt-5">
