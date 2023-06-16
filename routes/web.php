@@ -17,11 +17,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// FrontendController
 Route::get('/', [FrontendController::class, 'index'])->name('welcome');
 Route::get('contact', [FrontendController::class, 'contact'])->name('contact');
 Route::get('about', [FrontendController::class, 'about'])->name('about');
 
 
+// CategoryController
 Route::get('add/category', [CategoryController::class, 'addcategory']);
 Route::post('add/category/post', [CategoryController::class, 'addcategorypost']);
 Route::get('delete/category/{category_id}', [CategoryController::class, 'deletecategory']);
@@ -32,12 +34,12 @@ Route::get('force/delete/category/{category_id}', [CategoryController::class, 'f
 Route::post('mark/delete', [CategoryController::class, 'markdelete']);
 
 
-
+// ProfileController
 Route::get('profile', [ProfileController::class, 'profile']);
 Route::post('edit/profile/post', [ProfileController::class, 'editprofilepost']);
 Route::post('edit/password/post', [ProfileController::class, 'editpasswordpost']);
 
 
+// HomeController
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

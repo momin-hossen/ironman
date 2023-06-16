@@ -60,8 +60,10 @@ class CategoryController extends Controller
     }
 
     public function markdelete(Request $request){
-        foreach ($request->category_id as $cat_id) {
-            Category::find($cat_id)->delete();
+        if ($request->category_id) {
+            foreach ($request->category_id as $cat_id) {
+                Category::find($cat_id)->delete();
+            }
         }
         return back();
     }
