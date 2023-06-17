@@ -53,6 +53,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="zxx" class="js">
 
@@ -67,8 +68,8 @@
     <!-- Page Title  -->
     <title>Blank - Layout | DashLite Admin Template</title>
     <!-- StyleSheets  -->
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/dashlite.css?ver=2.9.0">
-    <link id="skin-default" rel="stylesheet" href="{{ asset('assets') }}/css/theme.css?ver=2.9.0">
+    <link rel="stylesheet" href="{{ asset('dashboard_asset') }}/assets/css/dashlite.css?ver=2.9.0">
+    <link id="skin-default" rel="stylesheet" href="{{ asset('dashboard_asset') }}/assets/css/theme.css?ver=2.9.0">
 </head>
 
 <body class="nk-body bg-lighter npc-general has-sidebar ">
@@ -84,8 +85,8 @@
                     </div>
                     <div class="nk-sidebar-brand">
                         <a href="html/index.html" class="logo-link nk-sidebar-logo">
-                            <img class="logo-light logo-img" src="{{ asset('assets') }}/images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                            <img class="logo-dark logo-img" src="{{ asset('assets') }}/images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                            <img class="logo-light logo-img" src="{{ asset('dashboard_asset') }}/images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
+                            <img class="logo-dark logo-img" src="{{ asset('dashboard_asset') }}/images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
                         </a>
                     </div>
                 </div><!-- .nk-sidebar-element -->
@@ -649,32 +650,32 @@
                                     <li class="dropdown language-dropdown d-none d-sm-block mr-n1">
                                         <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
                                             <div class="user-avatar sm border border-light">
-                                                <img src="{{ asset('assets') }}/images/flags/english-sq.png" alt="">
+                                                <img src="./images/flags/english-sq.png" alt="">
                                             </div>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-s1">
                                             <ul class="language-list">
                                                 <li>
                                                     <a href="#" class="language-item">
-                                                        <img src="{{ asset('assets') }}/images/flags/english.png" alt="" class="language-flag">
+                                                        <img src="./images/flags/english.png" alt="" class="language-flag">
                                                         <span class="language-name">English</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="#" class="language-item">
-                                                        <img src="{{ asset('assets') }}/images/flags/spanish.png" alt="" class="language-flag">
+                                                        <img src="./images/flags/spanish.png" alt="" class="language-flag">
                                                         <span class="language-name">Español</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="#" class="language-item">
-                                                        <img src="{{ asset('assets') }}/images/flags/french.png" alt="" class="language-flag">
+                                                        <img src="./images/flags/french.png" alt="" class="language-flag">
                                                         <span class="language-name">Français</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="#" class="language-item">
-                                                        <img src="{{ asset('assets') }}/images/flags/turkey.png" alt="" class="language-flag">
+                                                        <img src="./images/flags/turkey.png" alt="" class="language-flag">
                                                         <span class="language-name">Türkçe</span>
                                                     </a>
                                                 </li>
@@ -803,58 +804,52 @@
                     <div class="container-fluid">
                         <div class="nk-content-inner">
                             <div class="nk-content-body">
-                                    @extends('layouts.app')
-
-                                    @section('content')
-                                    <div class="container">
-                                        <div class="row justify-content-center">
-                                            <div class="col-md-8">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        {{ __('Dashboard') }}
-                                                        <h1>Total users: {{ $total_users }}</h1>
-                                                    </div>
-
-                                                    <div class="card-body">
-                                                        @if (session('status'))
-                                                            <div class="alert alert-success" role="alert">
-                                                                {{ session('status') }}
-                                                            </div>
-                                                        @endif
-
-                                                        <table class="table table-dark table-striped">
-                                                            <thead>
-                                                            <tr>
-                                                                <th>SL. No</th>
-                                                                <th>ID. No</th>
-                                                                <th>Name</th>
-                                                                <th>Email Address</th>
-                                                                <th>Created At</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            @foreach($users as $user)
-                                                            <tr>
-                                                                <td>{{ $users->firstItem() + $loop->index }}</td>
-                                                                <td>{{ $user->id }}</td>
-                                                                <td>{{ Str::title($user->name) }}</td>
-                                                                <td>{{ $user->email }}</td>
-                                                                <td>
-                                                                    <li>Date: {{ $user->created_at->format('d/m/Y') }}</li>
-                                                                    <li>Time: {{ $user->created_at->format('h:i:s:A') }}</li>
-                                                                    <li>{{ $user->created_at->diffForHumans() }}</li>
-                                                                </td>
-                                                            </tr>
-                                                            @endforeach
-                                                            </tbody>
-                                                        </table>
-                                                        {{  $users->links('vendor.pagination.bootstrap-5') }}
-                                                    </div>
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-8">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    {{ __('Dashboard') }}
+                                                    <h1>Total users: {{ $total_users }}</h1>
+                                                </div>
+                                
+                                                <div class="card-body">
+                                                    @if (session('status'))
+                                                        <div class="alert alert-success" role="alert">
+                                                            {{ session('status') }}
+                                                        </div>
+                                                    @endif
+                                
+                                                    <table class="table table-dark table-striped">
+                                                        <thead>
+                                                          <tr>
+                                                            <th>SL. No</th>
+                                                            <th>ID. No</th>
+                                                            <th>Name</th>
+                                                            <th>Email Address</th>
+                                                            <th>Created At</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @foreach($users as $user)
+                                                          <tr>
+                                                            <td>{{ $users->firstItem() + $loop->index }}</td>
+                                                            <td>{{ $user->id }}</td>
+                                                            <td>{{ Str::title($user->name) }}</td>
+                                                            <td>{{ $user->email }}</td>
+                                                            <td>
+                                                                <li>Date: {{ $user->created_at->format('d/m/Y') }}</li>
+                                                                <li>Time: {{ $user->created_at->format('h:i:s:A') }}</li>
+                                                                <li>{{ $user->created_at->diffForHumans() }}</li>
+                                                            </td>
+                                                          </tr>
+                                                        @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                    {{  $users->links('vendor.pagination.bootstrap-5') }}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    @endsection
                             </div>
                         </div>
                     </div>
@@ -921,49 +916,49 @@
                         <ul class="country-list text-center gy-2">
                             <li>
                                 <a href="#" class="country-item">
-                                    <img src="{{ asset('assets') }}/images/flags/arg.png" alt="" class="country-flag">
+                                    <img src="./images/flags/arg.png" alt="" class="country-flag">
                                     <span class="country-name">Argentina</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="country-item">
-                                    <img src="{{ asset('assets') }}/images/flags/aus.png" alt="" class="country-flag">
+                                    <img src="./images/flags/aus.png" alt="" class="country-flag">
                                     <span class="country-name">Australia</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="country-item">
-                                    <img src="{{ asset('assets') }}/images/flags/bangladesh.png" alt="" class="country-flag">
+                                    <img src="./images/flags/bangladesh.png" alt="" class="country-flag">
                                     <span class="country-name">Bangladesh</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="country-item">
-                                    <img src="{{ asset('assets') }}/images/flags/canada.png" alt="" class="country-flag">
+                                    <img src="./images/flags/canada.png" alt="" class="country-flag">
                                     <span class="country-name">Canada <small>(English)</small></span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="country-item">
-                                    <img src="{{ asset('assets') }}/images/flags/china.png" alt="" class="country-flag">
+                                    <img src="./images/flags/china.png" alt="" class="country-flag">
                                     <span class="country-name">Centrafricaine</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="country-item">
-                                    <img src="{{ asset('assets') }}/images/flags/china.png" alt="" class="country-flag">
+                                    <img src="./images/flags/china.png" alt="" class="country-flag">
                                     <span class="country-name">China</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="country-item">
-                                    <img src="{{ asset('assets') }}/images/flags/french.png" alt="" class="country-flag">
+                                    <img src="./images/flags/french.png" alt="" class="country-flag">
                                     <span class="country-name">France</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="country-item">
-                                    <img src="{{ asset('assets') }}/images/flags/germany.png" alt="" class="country-flag">
+                                    <img src="./images/flags/germany.png" alt="" class="country-flag">
                                     <span class="country-name">Germany</span>
                                 </a>
                             </li>
@@ -1034,8 +1029,8 @@
         </div><!-- .modla-dialog -->
     </div><!-- .modal -->
     <!-- JavaScript -->
-    <script src="{{ asset('assets') }}/js/bundle.js?ver=2.9.0"></script>
-    <script src="{{ asset('assets') }}/js/scripts.js?ver=2.9.0"></script>
+    <script src="{{ asset('dashboard_asset') }}/assets/js/bundle.js?ver=2.9.0"></script>
+    <script src="{{ asset('dashboard_asset') }}/assets/js/scripts.js?ver=2.9.0"></script>
 </body>
 
 </html>
