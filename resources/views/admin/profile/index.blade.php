@@ -1,15 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.dashboard_app')
 
-@section('content')
-<div class="container">
+@section('dashboard_content')
     <div class="row "> 
         <div class="col-md-4 m-auto">
-            @error('name')
-                <div class="alert alert-danger">
-                    {{ $message }}
-                </div>
-            @enderror
-
+            
+            @if (session('name_change_status_error'))
+            <div class="alert alert-danger">
+                {{ session('name_change_status_error') }}
+            </div>
+            @endif
             @if (session('name_change_status'))
             <div class="alert alert-success">
                 {{ session('name_change_status') }}
@@ -77,5 +76,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

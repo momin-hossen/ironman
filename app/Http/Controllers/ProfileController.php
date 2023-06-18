@@ -27,7 +27,7 @@ class ProfileController extends Controller
         }
         else {
             $left_days = Carbon::now()->diffInDays(Auth::user()->updated_at->addDays(30));
-            return back()->withErrors('You can change your name after'. $left_days.'days');
+            return back()->with('name_change_status_error','You can change your name after'. $left_days.'days');
         }
         
     }
