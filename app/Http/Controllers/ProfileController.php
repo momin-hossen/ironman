@@ -7,6 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -48,6 +49,18 @@ class ProfileController extends Controller
         }
         else {
             return back()->with('password_error','Your old password dose not match with database');
+        }
+    }
+    public function changeprofilephoto(Request $request){
+        if ($request->hasFile('profile_photo')) {
+        
+            $uploaded_photo = $request->file('profile_photo');
+            $new_photo_name = Auth::id().".".$uploaded_photo->getClientOriginalExtension();
+            $new_photo_location = 'public/uploads/profile_photos/'.$new_photo_name;
+            Image::make($uploaded_photo)->save(base_path($new_photo_location));
+        }
+        else {
+            echo "nai";
         }
     }
 }

@@ -30,7 +30,8 @@
                     <div class="nk-sidebar-brand">
                         <a href="#" class="logo-link nk-sidebar-logo">
                             {{-- <img class="logo-light logo-img" src="{{ asset('dashboard_asset') }}/images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                            <img class="logo-dark logo-img" src="{{ asset('dashboard_asset') }}/images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark"> --}}{{ env('APP_NAME') }}
+                            <img class="logo-dark logo-img" src="{{ asset('dashboard_asset') }}/images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark"> --}}
+                            {{ env('APP_NAME') }}
                         </a>
                     </div>
                 </div><!-- .nk-sidebar-element -->
@@ -102,46 +103,11 @@
                             </div><!-- .nk-header-news -->
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
-                                    <li class="dropdown language-dropdown d-none d-sm-block mr-n1">
-                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
-                                            <div class="user-avatar sm border border-light">
-                                                <img src="{{ asset('dashboard_asset') }}/images/flags/english-sq.png" alt="">
-                                            </div>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-s1">
-                                            <ul class="language-list">
-                                                <li>
-                                                    <a href="#" class="language-item">
-                                                        <img src="{{ asset('dashboard_asset') }}/images/flags/english.png" alt="" class="language-flag">
-                                                        <span class="language-name">English</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="language-item">
-                                                        <img src="{{ asset('dashboard_asset') }}/images/flags/spanish.png" alt="" class="language-flag">
-                                                        <span class="language-name">Español</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="language-item">
-                                                        <img src="{{ asset('dashboard_asset') }}/images/flags/french.png" alt="" class="language-flag">
-                                                        <span class="language-name">Français</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="language-item">
-                                                        <img src="{{ asset('dashboard_asset') }}/images/flags/turkey.png" alt="" class="language-flag">
-                                                        <span class="language-name">Türkçe</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li><!-- .dropdown -->
                                     <li class="dropdown user-dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                             <div class="user-toggle">
                                                 <div class="user-avatar sm">
-                                                    <em class="icon ni ni-user-alt"></em>
+                                                    <span><img src="{{ asset('uploads/profile_photos') }}/{{ Auth::user()->profile_photo }}" alt=""></span>
                                                 </div>
                                                 <div class="user-info d-none d-md-block">
                                                     <div class="user-status">Administrator</div>
@@ -153,7 +119,7 @@
                                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                                 <div class="user-card">
                                                     <div class="user-avatar">
-                                                        <span>AB</span>
+                                                        <span><img src="{{ asset('uploads/profile_photos') }}/{{ Auth::user()->profile_photo }}" alt=""></span>
                                                     </div>
                                                     <div class="user-info">
                                                         <span class="lead-text">{{ Auth::user()->name }}</span>

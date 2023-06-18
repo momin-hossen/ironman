@@ -38,6 +38,7 @@ Route::post('mark/delete', [CategoryController::class, 'markdelete']);
 Route::get('profile', [ProfileController::class, 'profile']);
 Route::post('edit/profile/post', [ProfileController::class, 'editprofilepost']);
 Route::post('edit/password/post', [ProfileController::class, 'editpasswordpost']);
+Route::post('change/profile/photo', [ProfileController::class, 'changeprofilephoto']);
 
 
 // HomeController
