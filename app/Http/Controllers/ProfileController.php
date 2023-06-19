@@ -53,11 +53,18 @@ class ProfileController extends Controller
     }
     public function changeprofilephoto(Request $request){
         if ($request->hasFile('profile_photo')) {
-        
+            if (Auth::user()->profile_photo != 'default.png') {
+                $old_photo_location = 'public/uploads/profile_photos/'.Auth::user()->profile_photo;
+                unlink(base_path($old_photo_location));
+            }
             $uploaded_photo = $request->file('profile_photo');
             $new_photo_name = Auth::id().".".$uploaded_photo->getClientOriginalExtension();
             $new_photo_location = 'public/uploads/profile_photos/'.$new_photo_name;
-            Image::make($uploaded_photo)->save(base_path($new_photo_location));
+            Image::make($uploaded_photo)->resize(270,250)->save(base_path($new_photo_location));
+            User::find(Auth::id())->update([
+                'profile_photo' => $new_photo_name
+            ]);
+            return back();
         }
         else {
             echo "nai";
