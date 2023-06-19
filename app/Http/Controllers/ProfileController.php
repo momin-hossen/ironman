@@ -52,6 +52,9 @@ class ProfileController extends Controller
         }
     }
     public function changeprofilephoto(Request $request){
+        $request->validate([
+            'profile_photo' => 'required|image'
+        ]);
         if ($request->hasFile('profile_photo')) {
             if (Auth::user()->profile_photo != 'default.png') {
                 $old_photo_location = 'public/uploads/profile_photos/'.Auth::user()->profile_photo;
