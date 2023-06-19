@@ -53,10 +53,25 @@
                         @csrf
                         <div class="form-group mb-3">
                           <label>Profile Photo</label>
-                          <input type="file" class="form-control" name="profile_photo">
-                          @error('category_name')
-                          <span class="text-danger">{{ $message }}</span>   
-                          @enderror
+                          <input type="file" class="form-control" name="profile_photo" onchange="readURL(this);">
+                          <img class="hidden" id="tenant_photo_viewer" src="#" />
+                          <style media="screen">
+                            .hidden{
+                                display: none;
+                            }
+                          </style>
+                          <script>
+                            function readURL(input) {
+                                if (input.files && input.files[0]) {
+                                    var reader = new FileReader();
+                                    reader.onload = function (e) {
+                                        $('#tenant_photo_viewer').attr('src', e.target.result).with(150).height(195);
+                                    };
+                                    $('#tenant_photo_viewer').removeClass('hidden');
+                                    reader.readAsDataURL(input.files[0]);
+                                }
+                            }
+                          </script>
                         </div>
                         <button type="submit" class="btn btn-warning">Change Profile Photo</button>
                     </form>
