@@ -6,7 +6,7 @@
 @endsection
 
                         <div class="row justify-content-center">
-                            <div class="col-md-8">
+                            <div class="col-md-8  shadow p-3 mb-5 bg-white rounded">
                                 <div class="card">
                                     <div class="card-header">
                                         {{ __('Dashboard') }}

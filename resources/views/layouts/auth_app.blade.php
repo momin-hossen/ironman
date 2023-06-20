@@ -2,7 +2,6 @@
 <html lang="zxx" class="js">
 
 <head>
-    <base href="../../../">
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,7 +9,7 @@
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="{{ asset('dashboard_asset') }}/images/favicon.png">
     <!-- Page Title  -->
-    <title>Login | DashLite Admin Template</title>
+    <title>{{ env('APP_NAME') }} | Login</title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('dashboard_asset') }}/assets/css/dashlite.css?ver=2.9.0">
     <link id="skin-default" rel="stylesheet" href="{{ asset('dashboard_asset') }}/assets/css/theme.css?ver=2.9.0">

@@ -4,10 +4,10 @@
 @section('title')
     Category | Dashboard
 @endsection
-    <div class="row">
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-header">
+    <div class="row ">
+        <div class="col-md-9">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-header bg-dark text-light">
                     List Category (Active)
                 </div>
                 <div class="card-body">
@@ -46,7 +46,7 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $category->category_name }}</td>
                                         <td>{{ $category->category_description }}</td>
-                                        <td>{{ App\Models\User::find($category->user_id)->name }}</td>
+                                        <td>{{ App\Models\User::find($category->user_id)->name ?? ''}}</td>
                                         <td>
                                             <img src="{{ asset('uploads/category_photos') }}/{{ $category->category_photo }}" class="img-fluid" alt="not found">
                                         </td>
@@ -69,12 +69,13 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                        
+                        @if ($categories->count() > 0)
                         <button type="submit" class="btn btn-danger btn-sm">Mark Deleted</button>
+                        @endif
                     </form>
                 </div>
             </div>
-            <div class="card mt-5">
+            <div class="card mt-5 shadow p-3 mb-5 bg-white rounded">
                 <div class="card-header bg-danger text-light">
                     List Category (Deleted)
                 </div>
@@ -106,7 +107,7 @@
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $deleted_category->category_name }}</td>
                                 <td>{{ $deleted_category->category_description }}</td>
-                                <td>{{ App\Models\User::find($deleted_category->user_id)->name }}</td>
+                                <td>{{ App\Models\User::find($deleted_category->user_id)->name ?? ''}}</td>
                                 <td>{{ $deleted_category->created_at->format('d/m/y  h:i:s A') }}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
@@ -125,9 +126,9 @@
                 </div>
             </div>
         </div>   
-        <div class="col-md-2">
-            <div class="card">
-                <div class="card-header">
+        <div class="col-md-3 ">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-header bg-dark text-light">
                     Add Category
                 </div>
                 <div class="card-body">

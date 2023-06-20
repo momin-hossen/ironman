@@ -33,7 +33,7 @@
                         <a href="#" class="logo-link nk-sidebar-logo">
                             {{-- <img class="logo-light logo-img" src="{{ asset('dashboard_asset') }}/images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
                             <img class="logo-dark logo-img" src="{{ asset('dashboard_asset') }}/images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark"> --}}
-                            {{ env('APP_NAME') }}
+                            <h3 class="text-light"><em>{{ env('APP_NAME') }}</em></h3>
                         </a>
                     </div>
                 </div><!-- .nk-sidebar-element -->

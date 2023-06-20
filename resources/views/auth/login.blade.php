@@ -16,15 +16,24 @@
                         <div class="nk-block nk-block-middle nk-auth-body">
                             <div class="brand-logo pb-5">
                                 <a href="html/index.html" class="logo-link">
-                                    <img class="logo-light logo-img logo-img-lg" src="{{ asset('dashboard_asset') }}/images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                                    <img class="logo-dark logo-img logo-img-lg" src="{{ asset('dashboard_asset') }}/images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                                    {{-- <img class="logo-light logo-img logo-img-lg" src="{{ asset('dashboard_asset') }}/images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
+                                    <img class="logo-dark logo-img logo-img-lg" src="{{ asset('dashboard_asset') }}/images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark"> --}}
+                                    <h2 class="text-danger shadow p-3 mb-5 bg-white rounded"><em>{{ env('APP_NAME') }}</em></h2>
                                 </a>
                             </div>
+                            
                             <div class="nk-block-head">
                                 <div class="nk-block-head-content">
                                     <h5 class="nk-block-title">Sign-In</h5>
                                 </div>
                             </div><!-- .nk-block-head -->
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </div>
+                            @endif
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="form-group">
