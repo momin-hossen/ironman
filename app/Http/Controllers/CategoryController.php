@@ -7,6 +7,7 @@ use App\Http\Requests\CategoryForm;
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller
 {
@@ -18,12 +19,24 @@ class CategoryController extends Controller
     }
 
     public function addcategorypost(CategoryForm $request){
-        Category::insert([
+        
+        $category_id = Category::insertGetId([
             'category_name' => $request->category_name,
             'category_description' => $request->category_description,
             'user_id' => Auth::user()->id,
             'created_at' => Carbon::now()
         ]);
+        if ($request->hasFile('category_photo')) {
+            echo "$category_id";
+
+            $uploaded_photo = $request->file('category_photo');
+            $new_photo_name = $category_id.".".$uploaded_photo->getClientOriginalExtension();
+            $new_photo_location = 'public/uploads/category_photos/'.$new_photo_name;
+            Image::make($uploaded_photo)->resize(270,250)->save(base_path($new_photo_location));
+            Category::find($category_id)->update([
+                'category_photo' => $new_photo_name
+            ]);
+        }
         return back()->with('succss_status', $request->category_name . ' category added successfully!');
     }
 

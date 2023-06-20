@@ -10,7 +10,9 @@
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="./images/favicon.png">
     <!-- Page Title  -->
-    <title>Blank - Layout | DashLite Admin Template</title>
+    <title>
+        @yield('title' ,'Ironman | Dashboard')
+    </title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('dashboard_asset') }}/assets/css/dashlite.css?ver=2.9.0">
     <link id="skin-default" rel="stylesheet" href="{{ asset('dashboard_asset') }}/assets/css/theme.css?ver=2.9.0">
@@ -245,6 +247,7 @@
     <!-- JavaScript -->
     <script src="{{ asset('dashboard_asset') }}/assets/js/bundle.js?ver=2.9.0"></script>
     <script src="{{ asset('dashboard_asset') }}/assets/js/scripts.js?ver=2.9.0"></script>
+    <script src="{{ asset('dashboard_asset') }}/assets/js/libs/datatable-btns.js?ver=2.9.0"></script>
 </body>
 
 </html>

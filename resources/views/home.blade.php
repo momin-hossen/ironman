@@ -1,6 +1,9 @@
 @extends('layouts.dashboard_app')
 
 @section('dashboard_content')
+@section('title')
+    Home | Dashboard
+@endsection
 
                         <div class="row justify-content-center">
                             <div class="col-md-8">

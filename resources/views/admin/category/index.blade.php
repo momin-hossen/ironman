@@ -1,8 +1,11 @@
 @extends('layouts.dashboard_app')
 
 @section('dashboard_content')
+@section('title')
+    Category | Dashboard
+@endsection
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
                     List Category (Active)
@@ -20,43 +23,53 @@
                     @endif
                     <form method="post" action="{{ url('mark/delete') }}">
                         @csrf
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Mark</th>
-                                    <th>Serial No.</th>
-                                    <th>Category Name</th>
-                                    <th>Category Description</th>
-                                    <th>Category Created By</th>
-                                    <th>Created At</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($categories as $category)
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="category_id[]" value="{{ $category->id }}">
-                                    </td>
-                                    <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $category->category_name }}</td>
-                                    <td>{{ $category->category_description }}</td>
-                                    <td>{{ App\Models\User::find($category->user_id)->name }}</td>
-                                    <td>{{ $category->created_at->format('d/m/y  h:i:s A') }}</td>
-                                    <td>
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <a href="{{ url('edit/category') }}/{{ $category->id }}" type="button" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="{{ url('delete/category') }}/{{ $category->id }}" type="button" class="btn btn-danger btn-sm">Delete</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @empty
+                        
+                            <table class="datatable-init table table-bordered">
+                                <thead>
                                     <tr>
-                                        <td colspan="50" class="text-center text-danger">No Data available</td>
+                                        <th>Mark</th>
+                                        <th>Serial No.</th>
+                                        <th>Category Name</th>
+                                        <th>Category Description</th>
+                                        <th>Category Created By</th>
+                                        <th>Photos</th>
+                                        <th>Last Updated At</th>
+                                        <th>Action</th>
                                     </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @forelse ($categories as $category)
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="category_id[]" value="{{ $category->id }}">
+                                        </td>
+                                        <td>{{ $loop->index + 1 }}</td>
+                                        <td>{{ $category->category_name }}</td>
+                                        <td>{{ $category->category_description }}</td>
+                                        <td>{{ App\Models\User::find($category->user_id)->name }}</td>
+                                        <td>
+                                            <img src="{{ asset('uploads/category_photos') }}/{{ $category->category_photo }}" class="img-fluid" alt="not found">
+                                        </td>
+                                        <td>
+                                            @isset($category->updated_at)
+                                            {{ $category->updated_at->diffForHumans() }}
+                                            @endisset
+                                        </td>
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a href="{{ url('edit/category') }}/{{ $category->id }}" type="button" class="btn btn-info btn-sm">Edit</a>
+                                                <a href="{{ url('delete/category') }}/{{ $category->id }}" type="button" class="btn btn-danger btn-sm">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="50" class="text-center text-danger">No Data available</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        
                         <button type="submit" class="btn btn-danger btn-sm">Mark Deleted</button>
                     </form>
                 </div>
@@ -76,7 +89,7 @@
                             {{ session('forcedelete_status ') }}
                         </div>   
                     @endif
-                    <table class="table table-bordered">
+                    <table class="datatable-init table table-bordered">
                         <thead>
                             <tr>
                                 <th>Serial No.</th>
@@ -112,7 +125,7 @@
                 </div>
             </div>
         </div>   
-        <div class="col-md-4">
+        <div class="col-md-2">
             <div class="card">
                 <div class="card-header">
                     Add Category
@@ -131,7 +144,7 @@
                             @endforeach
                         </div> 
                     @endif
-                    <form method="POST" action="{{ url('add/category/post') }}">
+                    <form method="POST" action="{{ url('add/category/post') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
                           <label>Category Name</label>
@@ -146,6 +159,13 @@
                             @error('category_description')
                             <span class="text-danger">{{ $message }}</span>   
                             @enderror
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Category Photo</label>
+                            <input type="file" name="category_photo" class="form-control">
+                            {{-- @error('category_description')
+                            <span class="text-danger">{{ $message }}</span>   
+                            @enderror --}}
                         </div>
                         <button type="submit" class="btn btn-primary">Add Category</button>
                     </form>
