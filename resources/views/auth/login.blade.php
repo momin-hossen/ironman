@@ -56,6 +56,13 @@
                                         <input type="password" class="form-control form-control-lg" placeholder="Enter your password" name="password">
                                     </div>
                                 </div><!-- .form-group -->
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="remember">Remeber Me</label>
+                                </div>
+                                <div class="form-group">
+                                    <a href="{{ route('password.request') }}">Forgrt Password</a>
+                                </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
                                 </div>
