@@ -7,7 +7,9 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
+use App\Mail\ChangePasswordMail;
 
 class ProfileController extends Controller
 {
@@ -33,6 +35,8 @@ class ProfileController extends Controller
         
     }
     public function editpasswordpost(Request $request){
+        Mail::to(Auth::user()->email)->send(new ChangePasswordMail(Auth::user()->name));
+        die();
         $request->validate([
             'password' => 'confirmed|min:8|alpha_num'
         ]);
@@ -44,7 +48,10 @@ class ProfileController extends Controller
                User::find(Auth::id())->update([
                 'password' => Hash::make($request->password)
                ]);
-               return back();
+               
+               Mail::to(Auth::user()->email)->send(new ChangePasswordMail(Auth::user()->name));
+               echo "SUCCESS";
+            //    return back();
             }
         }
         else {
