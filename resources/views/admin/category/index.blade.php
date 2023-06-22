@@ -90,39 +90,49 @@
                             {{ session('forcedelete_status ') }}
                         </div>   
                     @endif
-                    <table class="datatable-init table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Serial No.</th>
-                                <th>Category Name</th>
-                                <th>Category Description</th>
-                                <th>Category Created By</th>
-                                <th>Created At</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($deleted_categories as $deleted_category)
-                            <tr>
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $deleted_category->category_name }}</td>
-                                <td>{{ $deleted_category->category_description }}</td>
-                                <td>{{ App\Models\User::find($deleted_category->user_id)->name ?? ''}}</td>
-                                <td>{{ $deleted_category->created_at->format('d/m/y  h:i:s A') }}</td>
-                                <td>
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="{{ url('force/delete/category') }}/{{ $deleted_category->id }}" type="button" class="btn btn-danger btn-sm">F.D</a>
-                                        <a href="{{ url('restore/category') }}/{{ $deleted_category->id }}" type="button" class="btn btn-success btn-sm">Restore</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            @empty
+                    <form method="GET" action="{{ url('mark/restore') }}">
+                        @csrf
+                        <table class="datatable-init table table-bordered">
+                            <thead>
                                 <tr>
-                                    <td colspan="50" class="text-center text-danger">No Data available</td>
+                                    <th>Mark</th>
+                                    <th>Serial No.</th>
+                                    <th>Category Name</th>
+                                    <th>Category Description</th>
+                                    <th>Category Created By</th>
+                                    <th>Created At</th>
+                                    <th>Action</th>
                                 </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @forelse ($deleted_categories as $deleted_category)
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="category_id[]" value="{{ $deleted_category->id }}">
+                                    </td>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $deleted_category->category_name }}</td>
+                                    <td>{{ $deleted_category->category_description }}</td>
+                                    <td>{{ App\Models\User::find($deleted_category->user_id)->name ?? ''}}</td>
+                                    <td>{{ $deleted_category->created_at->format('d/m/y  h:i:s A') }}</td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a href="{{ url('force/delete/category') }}/{{ $deleted_category->id }}" type="button" class="btn btn-danger btn-sm">F.D</a>
+                                            <a href="{{ url('restore/category') }}/{{ $deleted_category->id }}" type="button" class="btn btn-success btn-sm">Restore</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="50" class="text-center text-danger">No Data available</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        @if ($deleted_categories->count() > 0)
+                            <button type="submit" class="btn btn-success btn-sm">Mark Restore</button>
+                        @endif
+                    </form>
                 </div>
             </div>
         </div>   

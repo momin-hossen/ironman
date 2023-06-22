@@ -80,4 +80,12 @@ class CategoryController extends Controller
         }
         return back();
     }
+    public function markrestore(Request $request){
+        if ($request->category_id) {
+            foreach ($request->category_id as $cat_id) {
+                Category::withTrashed()->find($cat_id)->restore();
+            }
+        }
+        return back();
+    }
 }

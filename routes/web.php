@@ -32,6 +32,7 @@ Route::post('edit/category/post', [CategoryController::class, 'editcategorypost'
 Route::get('restore/category/{category_id}', [CategoryController::class, 'restorecategory']);
 Route::get('force/delete/category/{category_id}', [CategoryController::class, 'forcedeletecategory']);
 Route::post('mark/delete', [CategoryController::class, 'markdelete']);
+Route::get('mark/restore', [CategoryController::class, 'markrestore']);
 
 
 // ProfileController
