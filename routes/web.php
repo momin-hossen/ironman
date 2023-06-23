@@ -45,5 +45,6 @@ Route::post('change/profile/photo', [ProfileController::class, 'changeprofilepho
 // HomeController
 Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::get('send/newsletter', [App\Http\Controllers\HomeController::class, 'sendnewsletter'])->name('sendnewsletter');
 
 

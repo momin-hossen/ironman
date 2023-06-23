@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\newsletter;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -29,5 +31,12 @@ class HomeController extends Controller
         $users = User::latest()->paginate(3);
         $total_users = User::count();
         return view('home', compact('users', 'total_users'));
+    }
+    public function sendnewsletter()
+    {
+        foreach (User::all()->pluck('email') as $email) {
+            Mail::to($email)->send(new Newsletter());
+        }
+        return back();
     }
 }

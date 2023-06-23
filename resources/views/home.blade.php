@@ -9,10 +9,16 @@
                             <div class="col-md-8  shadow p-3 mb-5 bg-white rounded">
                                 <div class="card">
                                     <div class="card-header">
+                                        <a href="{{ url('send/newsletter') }}" class="btn btn-success">Send Newsletter to {{ $total_users }} users</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8  shadow p-3 mb-5 bg-white rounded">
+                                <div class="card">
+                                    <div class="card-header">
                                         {{ __('Dashboard') }}
                                         <h1>Total users: {{ $total_users }}</h1>
                                     </div>
-                    
                                     <div class="card-body">
                                         @if (session('status'))
                                             <div class="alert alert-success" role="alert">

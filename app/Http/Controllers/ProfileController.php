@@ -35,8 +35,6 @@ class ProfileController extends Controller
         
     }
     public function editpasswordpost(Request $request){
-        Mail::to(Auth::user()->email)->send(new ChangePasswordMail(Auth::user()->name));
-        die();
         $request->validate([
             'password' => 'confirmed|min:8|alpha_num'
         ]);
@@ -50,8 +48,7 @@ class ProfileController extends Controller
                ]);
                
                Mail::to(Auth::user()->email)->send(new ChangePasswordMail(Auth::user()->name));
-               echo "SUCCESS";
-            //    return back();
+               return back();
             }
         }
         else {
