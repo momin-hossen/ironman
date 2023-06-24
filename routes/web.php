@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +41,10 @@ Route::get('profile', [ProfileController::class, 'profile']);
 Route::post('edit/profile/post', [ProfileController::class, 'editprofilepost']);
 Route::post('edit/password/post', [ProfileController::class, 'editpasswordpost']);
 Route::post('change/profile/photo', [ProfileController::class, 'changeprofilephoto']);
+
+
+// ProductController
+Route::resource('product', ProductController::class);
 
 
 // HomeController
