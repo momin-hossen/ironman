@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\FindOutNumberRule;
 
 class CategoryForm extends FormRequest
 {
@@ -22,7 +23,8 @@ class CategoryForm extends FormRequest
     public function rules(): array
     {
         return [
-            'category_name' => 'required|unique:categories,category_name',
+
+            'category_name' => ['required','unique:categories,category_name', new FindOutNumberRule],
             'category_description' => 'required'
         ];
     }
@@ -30,7 +32,6 @@ class CategoryForm extends FormRequest
     {
         return [
             'category_name.required' => 'Category name kothay?',
-            // 'category_name.alpha' => 'Number diso ken?',
             'category_description.required' => 'Description nai?'
         ];
     }
