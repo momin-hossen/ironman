@@ -1,6 +1,3 @@
-@php
-    error_reporting(0);
-@endphp
 @extends('layouts.dashboard_app')
 
 @section('title')
@@ -11,7 +8,7 @@
         <div class="col-md-9">
             <div class="card shadow p-3 mb-5 bg-white rounded">
                 <div class="card-header bg-dark text-light">
-                    List Category (Active)
+                    List Product (Active)
                 </div>
                 <div class="card-body">
                     @if (session('delete_status'))
@@ -30,46 +27,40 @@
                             <table class="datatable-init table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Mark</th>
                                         <th>Serial No.</th>
                                         <th>Category Name</th>
-                                        <th>Category Description</th>
-                                        <th>Category Created By</th>
-                                        <th>Photos</th>
-                                        <th>Last Updated At</th>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Alert Quantity</th>
+                                        <th>Photo</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @forelse ($categories as $category)
+                                    @forelse ($products as $product)
                                     <tr>
-                                        <td>
+                                        {{-- <td>
                                             <input type="checkbox" name="category_id[]" value="{{ $category->id }}">
-                                        </td>
+                                        </td> --}}
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $category->category_name }}</td>
-                                        <td>{{ $category->category_description }}</td>
-                                        <td>{{ App\Models\User::find($category->user_id)->name ?? ''}}</td>
+                                        <td>{{ $product->category_id }}</td>
+                                        <td>{{ $product->product_name }}</td>
+                                        <td>{{ $product->product_price }}</td>
+                                        <td>{{ $product->product_quantity }}</td>
+                                        <td>{{ $product->product_alert_quantity }}</td>
                                         <td>
-                                            <img src="{{ asset('uploads/category_photos') }}/{{ $category->category_photo }}" class="img-fluid" alt="not found">
+                                            <img style="height: 40px" src="{{ asset('uploads/product_photos') }}/{{ $product->product_thumbnail_photo }}" alt="{{ $product->product_thumbnail_photo }}">
                                         </td>
                                         <td>
-                                            @isset($category->updated_at)
-                                            {{ $category->updated_at->diffForHumans() }}
-                                            @endisset
-                                        </td>
-                                        <td>
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="{{ url('edit/category') }}/{{ $category->id }}" type="button" class="btn btn-info btn-sm">Edit</a>
-                                                <a href="{{ url('delete/category') }}/{{ $category->id }}" type="button" class="btn btn-danger btn-sm">Delete</a>
-                                            </div>
+                                            <a href="{{ route('product.show', $product->id) }}" type="button" class="btn btn-info btn-sm">Edit</a>
                                         </td>
                                     </tr>
                                     @empty
                                         <tr>
                                             <td colspan="50" class="text-center text-danger">No Data available</td>
                                         </tr>
-                                    @endforelse --}}
+                                    @endforelse
                                 </tbody>
                             </table>
                         <button type="submit" class="btn btn-danger btn-sm">Mark Deleted</button>
@@ -83,9 +74,9 @@
                     Add Product
                 </div>
                 <div class="card-body">
-                    @if (session('succss_status'))
+                    @if (session('product_status'))
                         <div class="alert alert-success">
-                            {{ session('succss_status') }}
+                            {{ session('product_status') }}
                         </div>    
                     @endif
 

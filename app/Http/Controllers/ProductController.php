@@ -15,7 +15,8 @@ class ProductController extends Controller
     public function index()
     {
         return view('admin.product.index', [
-            'active_categories' =>Category::all()
+            'active_categories' =>Category::all(),
+            'products' => Product::all(),
         ]);
     }
 
@@ -33,17 +34,20 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         Product::insert($request->except('_token') + [
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
         ]);
-        return back();
+        return back()->with('product_status', 'Product Added Successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Product $product)
     {
-        //
+        return view('admin.product.show', [
+            'active_categories' => Category::all(),
+            'product_info' => $product
+        ]);
     }
 
     /**
