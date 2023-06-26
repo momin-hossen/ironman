@@ -24,14 +24,15 @@
                             @endforeach
                         </div> 
                     @endif
-                    <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('product.update', $product_info->id) }}" enctype="multipart/form-data">
                         @csrf
+                        @method('PATCH')
                         <div class="form-group mb-3">
                           <label>Category Name</label>
                           <select name="category_id" id="" class="form-control">
                             <option value="">-Select One-</option>
                             @foreach ($active_categories as $active_category)
-                            <option value="{{ $active_category->id }}">{{ $active_category->category_name }}</option>
+                            <option {{ ($active_category->id == $product_info->category_id) ? "selected":"" }} value="{{ $active_category->id }}">{{ $active_category->category_name }}</option>
                             @endforeach
                           </select>
                         </div>
@@ -63,7 +64,7 @@
                             <label>Product Photo</label>
                             <input type="file" name="product_photo" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Product</button>
+                        <button type="submit" class="btn btn-primary">Edit Product</button>
                     </form>
                 </div>
             </div>
