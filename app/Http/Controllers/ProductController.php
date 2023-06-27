@@ -64,14 +64,15 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $product->update($request->except('_tolen', '_method' ));
-        echo "DONE";
+        return redirect('product');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return back();
     }
 }
