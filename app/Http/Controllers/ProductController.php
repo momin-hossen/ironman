@@ -42,20 +42,20 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(string $id)
     {
-        return view('admin.product.show', [
-            'active_categories' => Category::all(),
-            'product_info' => $product
-        ]);
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        //
+        return view('admin.product.edit', [
+            'active_categories' => Category::all(),
+            'product_info' => $product
+        ]);
     }
 
     /**

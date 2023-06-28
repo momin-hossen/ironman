@@ -44,7 +44,8 @@
                                             <input type="checkbox" name="category_id[]" value="{{ $category->id }}">
                                         </td> --}}
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ App\Models\Category::find($product->category_id)->category_name }}</td>
+                                        {{-- <td>{{ App\Models\Category::find($product->category_id)->category_name }}</td> --}}
+                                        <td>{{ $product->onetoonerelationwithcategorytable->category_name }}</td>
                                         <td>{{ $product->product_name }}</td>
                                         <td>{{ $product->product_price }}</td>
                                         <td>{{ $product->product_quantity }}</td>
@@ -53,7 +54,7 @@
                                             <img style="height: 40px" src="{{ asset('uploads/product_photos') }}/{{ $product->product_thumbnail_photo }}" alt="{{ $product->product_thumbnail_photo }}">
                                         </td>
                                         <td>
-                                            <a href="{{ route('product.show', $product->id) }}" type="button" class="btn btn-info btn-sm">Edit</a>
+                                            <a href="{{ route('product.edit', $product->id) }}" type="button" class="btn btn-info btn-sm">Edit</a>
                                             <form action="{{ route('product.destroy', $product->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')

@@ -9,4 +9,8 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function onetoonerelationwithcategorytable(){
+        return $this->hasOne('App\Models\Category', 'id', 'category_id');
+    }
 }
