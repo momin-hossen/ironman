@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryForm;
 use App\Models\Category;
+use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
@@ -42,6 +43,7 @@ class CategoryController extends Controller
 
     public function deletecategory($category_id){
         Category::find($category_id)->delete();
+        Product::where('category_id', $category_id)->delete();
         return back()->with('delete_status', 'Your category deleted successfully!');
     }
 
