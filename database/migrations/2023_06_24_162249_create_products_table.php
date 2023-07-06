@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('product_quantity');
             $table->integer('product_alert_quantity');
             $table->string('product_thumbnail_photo')->default('defauft_product_thumbnail_photo.jpg');
+            $table->longText('slug');
             $table->timestamps();
             $table->softDeletes();
         });

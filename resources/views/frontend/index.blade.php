@@ -177,7 +177,7 @@
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3><a href="single-product.html">{{ $active_product->product_name }}</a></h3>
+                            <h3><a href="{{ url('product/details') }}/{{ $active_product->slug }}">{{ $active_product->product_name }}</a></h3>
                             <p class="pull-left">{{ $active_product->product_price }}
 
                             </p>

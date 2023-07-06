@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
+
 
 class ProductController extends Controller
 {
@@ -20,6 +22,8 @@ class ProductController extends Controller
         ]);
     }
 
+    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -33,7 +37,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $slug_link = Str::slug($request->product_name."-".Str::random(5));
         Product::insert($request->except('_token') + [
+            'slug' => $slug_link,
             'created_at' => Carbon::now(),
         ]);
         return back()->with('product_status', 'Product Added Successfully!');

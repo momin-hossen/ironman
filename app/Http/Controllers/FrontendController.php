@@ -14,6 +14,14 @@ class FrontendController extends Controller
             'active_categories' => Category::all()
         ]);
     }
+    public function productdetails($slug)
+    {
+        return view('frontend.productdetails', [
+            'product_info' => Product::where('slug', $slug)->firstOrFail()
+        ]);
+    }
+
+
     public function contact(){
         return view('frontend.contact');
     }
