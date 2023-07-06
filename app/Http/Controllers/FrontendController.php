@@ -16,8 +16,11 @@ class FrontendController extends Controller
     }
     public function productdetails($slug)
     {
+        $product_info = Product::where('slug', $slug)->firstOrFail();
+        $related_products = Product::where('category_id', $product_info->category_id)->where('id', '!=', $product_info->id)->get();
         return view('frontend.productdetails', [
-            'product_info' => Product::where('slug', $slug)->firstOrFail()
+            'product_info' => $product_info,
+            'related_products' => $related_products
         ]);
     }
 
