@@ -254,6 +254,7 @@
     <script src="{{ asset('dashboard_asset') }}/assets/js/bundle.js?ver=2.9.0"></script>
     <script src="{{ asset('dashboard_asset') }}/assets/js/scripts.js?ver=2.9.0"></script>
     <script src="{{ asset('dashboard_asset') }}/assets/js/libs/datatable-btns.js?ver=2.9.0"></script>
-</body>
+    @yield('footer_scripts')
 
+</body>
 </html>

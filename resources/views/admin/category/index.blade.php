@@ -21,9 +21,9 @@
                             {{ session('edit_status') }}
                         </div>    
                     @endif
-                    <form method="post" action="{{ url('mark/delete') }}">
+                    
+                    <form method="post" action="{{ url('mark/delete') }}" id="mark_delete_form">
                         @csrf
-                        
                             <table class="datatable-init table table-bordered">
                                 <thead>
                                     <tr>
@@ -36,13 +36,15 @@
                                         <th>Last Updated At</th>
                                         <th>Action</th>
                                     </tr>
-                                </thead>
+                                </thead>                                 
                                 <tbody>
                                     @forelse ($categories as $category)
                                     <tr>
+                                        
                                         <td>
                                             <input type="checkbox" name="category_id[]" value="{{ $category->id }}">
                                         </td>
+                                                                                                                    
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $category->category_name }}</td>
                                         <td>{{ $category->category_description }}</td>
@@ -58,7 +60,13 @@
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="{{ url('edit/category') }}/{{ $category->id }}" type="button" class="btn btn-info btn-sm">Edit</a>
-                                                <a href="{{ url('delete/category') }}/{{ $category->id }}" type="button" class="btn btn-danger btn-sm">Delete</a>
+
+                                                <form action="{{ url('delete/category') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="category_id" value="{{ $category->id }}">
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                </form>
+                                                
                                             </div>
                                         </td>
                                     </tr>
