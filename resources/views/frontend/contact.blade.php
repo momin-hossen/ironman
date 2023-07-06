@@ -30,22 +30,26 @@
                 <div class="col-lg-8 col-12">
                     <div class="contact-form form-style">
                         <div class="cf-msg"></div>
-                        <form action="http://themepresss.com/tf/html/tohoney/mail.php" method="post" id="cf">
+                        <form action="{{ url('contact/insert') }}" method="post" enctype="multipart/form-data">
+                            @csrf
                             <div class="row">
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" placeholder="Name" id="fname" name="fname">
+                                    <input type="text" placeholder="Name" name="contact_name">
                                 </div>
                                 <div class="col-12  col-sm-6">
-                                    <input type="text" placeholder="Email" id="email" name="email">
+                                    <input type="text" placeholder="Email" name="contact_email">
                                 </div>
                                 <div class="col-12">
-                                    <input type="text" placeholder="Subject" id="subject" name="subject">
+                                    <input type="text" placeholder="Subject" name="contact_subject">
                                 </div>
                                 <div class="col-12">
-                                    <textarea class="contact-textarea" placeholder="Message" id="msg" name="msg"></textarea>
+                                    <textarea class="contact-textarea" placeholder="Message" name="contact_message"></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button id="submit" name="submit">SEND MESSAGE</button>
+                                    <input class="form-control" type="file" name="contact_attachement">
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit">SEND MESSAGE</button>
                                 </div>
                             </div>
                         </form>

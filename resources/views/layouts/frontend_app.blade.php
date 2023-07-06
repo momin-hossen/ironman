@@ -76,7 +76,7 @@
                                     <li><a href="wishlist.html">wishlist</a></li>
                                 </ul>
                             </li>
-                            <li><a href="register.html"> Login/Register </a></li>
+                            <li><a href="{{ url('login') }}"> Login/Register </a></li>
                         </ul>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                     <div class="col-lg-7 d-none d-lg-block">
                         <nav class="mainmenu">
                             <ul class="d-flex">
-                                <li class="active"><a href="index.html">Home</a></li>
+                                <li class="active"><a href="{{ url('/') }}">Home</a></li>
                                 <li><a href="about.html">About</a></li>
                                 <li>
                                     <a href="javascript:void(0);">Shop <i class="fa fa-angle-down"></i></a>
@@ -125,7 +125,7 @@
                                         <li><a href="blog-details.html">blog Details</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="{{ url('contact') }}">Contact</a></li>
                             </ul>
                         </nav>
                     </div>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Product;
+use Carbon\Carbon;
 
 class FrontendController extends Controller
 {
@@ -28,6 +30,14 @@ class FrontendController extends Controller
     public function contact(){
         return view('frontend.contact');
     }
+
+    public function contactinsert(Request $request){
+        Contact::insert($request->except('_token')+[
+            'created_at' => Carbon::now(),
+        ]);
+        return back();
+    }
+
     public function about(){
         return view('about');
     }
