@@ -10,4 +10,6 @@ class Contact extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable = ['contact_attachement'];
 }

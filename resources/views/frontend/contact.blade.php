@@ -30,6 +30,12 @@
                 <div class="col-lg-8 col-12">
                     <div class="contact-form form-style">
                         <div class="cf-msg"></div>
+                        @if (session('success_status'))
+                            <div class="alert alert-success">
+                                {{ session('success_status') }}
+                            </div>
+                        @endif
+                        
                         <form action="{{ url('contact/insert') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">

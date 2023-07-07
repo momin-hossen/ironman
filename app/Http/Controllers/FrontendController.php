@@ -32,10 +32,19 @@ class FrontendController extends Controller
     }
 
     public function contactinsert(Request $request){
-        Contact::insert($request->except('_token')+[
+        $contact_id = Contact::insertGetId($request->except('_token')+[
             'created_at' => Carbon::now(),
         ]);
-        return back();
+        if ($request->hasFile('contact_attachement')) {
+            // $uploaded_path = $request->file('contact_attachement')->store('public/contact_uploads');
+            $path = $request->file('contact_attachement')->storeAs(
+                'public/contact_uploads', $contact_id.".".$request->file('contact_attachement')->getClientOriginalExtension()
+            );
+            Contact::find($contact_id)->update([
+                'contact_attachement' => $path
+            ]);
+        }
+        return back()->with('success_status', 'We recieved your message');
     }
 
     public function about(){
