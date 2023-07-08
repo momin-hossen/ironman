@@ -90,8 +90,8 @@
                                                 <td>
                                                     @if ($contact->contact_attachement)
                                                     <a href="{{ url('contact/upload/download') }}/{{ $contact->id }}"><em class="icon ni ni-download"></em></a>
+                                                    <a target="_blank" href="{{ asset('storage') }}/{{ $contact->contact_attachement }}"><em class="icon ni ni-file"></em></a>
                                                     @endif
-                                                    {{-- <em class="icon ni ni-file"></em> --}}
                                                 </td>
                                               </tr>
                                             @endforeach
