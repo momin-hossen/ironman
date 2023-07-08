@@ -6,14 +6,14 @@
 @endsection
 
                         <div class="row justify-content-center">
-                            <div class="col-md-8  shadow p-3 mb-5 bg-white rounded">
+                            <div class="col-md-12  shadow p-3 mb-5 bg-white rounded">
                                 <div class="card">
                                     <div class="card-header">
                                         <a href="{{ url('send/newsletter') }}" class="btn btn-success">Send Newsletter to {{ $total_users }} users</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-8  shadow p-3 mb-5 bg-white rounded">
+                            <div class="col-md-12  shadow p-3 mb-5 bg-white rounded">
                                 <div class="card">
                                     <div class="card-header">
                                         {{ __('Dashboard') }}
@@ -53,6 +53,50 @@
                                             </tbody>
                                         </table>
                                         {{  $users->links('vendor.pagination.bootstrap-5') }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <div class="col-md-12  shadow p-3 mb-5 bg-white rounded">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Contact
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table table-dark table-striped">
+                                            <thead>
+                                              <tr>
+                                                <th>SL. No</th>
+                                                <th>Name</th>
+                                                <th>Email Address</th>
+                                                <th>Subject</th>
+                                                <th>Message</th>
+                                                <th>File</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($contacts as $contact)
+                                              <tr>
+                                                <td>{{ $loop->index+1 }}</td>
+                                                <td>{{ $contact->contact_name }}</td>
+                                                <td>{{ $contact->contact_email }}</td>
+                                                <td>{{ $contact->contact_subject }}</td>
+                                                <td>{{ $contact->contact_message }}</td>
+                                                <td>
+                                                    @if ($contact->contact_attachement)
+                                                    <a href="{{ url('contact/upload/download') }}/{{ $contact->id }}"><em class="icon ni ni-download"></em></a>
+                                                    @endif
+                                                    {{-- <em class="icon ni ni-file"></em> --}}
+                                                </td>
+                                              </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>

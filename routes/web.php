@@ -53,5 +53,6 @@ Route::resource('product', ProductController::class);
 Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 Route::get('send/newsletter', [App\Http\Controllers\HomeController::class, 'sendnewsletter'])->name('sendnewsletter');
+Route::get('contact/upload/download/{contact_id}', [App\Http\Controllers\HomeController::class, 'contactuploaddownload'])->name('contactuploaddownload');
 
 

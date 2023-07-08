@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Mail\newsletter;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -30,7 +32,8 @@ class HomeController extends Controller
         // $users = User::orderBy('id', 'desc')->get();
         $users = User::latest()->paginate(3);
         $total_users = User::count();
-        return view('home', compact('users', 'total_users'));
+        $contacts = Contact::all();
+        return view('home', compact('users', 'total_users', 'contacts'));
     }
     public function sendnewsletter()
     {
@@ -38,5 +41,9 @@ class HomeController extends Controller
             Mail::to($email)->send(new Newsletter());
         }
         return back();
+    }
+    public function contactuploaddownload($contact_id)
+    {
+        return Storage::download(Contact::findOrFail($contact_id)->contact_attachement);
     }
 }
