@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('admin.product.index', [
-            'active_categories' =>Category::all(),
+            'active_categories' => Category::all(),
             'products' => Product::all(),
         ]);
     }
@@ -62,7 +62,7 @@ class ProductController extends Controller
             $flag =1;
             foreach ($request->file('product_multiple_photo') as $single_photo) {
                 $uploaded_photo = $single_photo;
-                $new_photo_name = "$product_id"."$flag".".".$uploaded_photo->getClientOriginalExtension();
+                $new_photo_name = "$product_id"."-"."$flag".".".$uploaded_photo->getClientOriginalExtension();
                 $new_photo_location = 'public/uploads/product_multiple_photos/'.$new_photo_name;
                 Image::make($uploaded_photo)->resize(600,622)->save(base_path($new_photo_location));
 

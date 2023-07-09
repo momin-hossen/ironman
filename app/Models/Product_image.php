@@ -9,5 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product_image extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes; 
+
 }

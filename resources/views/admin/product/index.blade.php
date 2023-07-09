@@ -19,11 +19,10 @@
                     @if (session('edit_status'))
                         <div class="alert alert-success">
                             {{ session('edit_status') }}
-                        </div>    
+                        </div>
                     @endif
-                    <form method="post" action="{{ url('mark/delete') }}">
+                    <form method="post" action="{{-- url('mark/delete') --}}">
                         @csrf
-                        
                             <table class="datatable-init table table-bordered">
                                 <thead>
                                     <tr>
@@ -69,7 +68,7 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                        <button type="submit" class="btn btn-danger btn-sm">Mark Deleted</button>
+                        {{-- <button type="submit" class="btn btn-danger btn-sm">Mark Deleted</button> --}}
                     </form>
                 </div>
             </div>

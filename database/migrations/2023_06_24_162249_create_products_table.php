@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('product_thumbnail_photo')->default('defauft_product_thumbnail_photo.jpg');
             $table->longText('slug');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
