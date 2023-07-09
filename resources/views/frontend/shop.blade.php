@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadcumb-wrap text-center">
-                        <h2>Shop Page</h2>
+                        <h2>Shop Page ({{ total_product_count() }})</h2>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ ('/') }}">Home</a></li>
                             <li><span>Shop</span></li>
                         </ul>
                     </div>
