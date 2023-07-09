@@ -10,4 +10,8 @@ class Category extends Model
 {
     use SoftDeletes;
     protected $fillable = ['category_name', 'category_description', 'category_photo'];
+
+    public function onetomanyrelationwithproducttable() {
+        return $this->hasMany('App\Models\Product', 'category_id', 'id');
+    }
 }

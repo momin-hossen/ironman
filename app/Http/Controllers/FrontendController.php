@@ -19,7 +19,7 @@ class FrontendController extends Controller
     public function productdetails($slug)
     {
         $product_info = Product::where('slug', $slug)->firstOrFail();
-        $related_products = Product::where('category_id', $product_info->category_id)->where('id', '!=', $product_info->id)->get();
+        $related_products = Product::where('category_id', $product_info->category_id)->where('id', '!=', $product_info->id)->limit(4)->get();
         return view('frontend.productdetails', [
             'product_info' => $product_info,
             'related_products' => $related_products
@@ -49,5 +49,11 @@ class FrontendController extends Controller
 
     public function about(){
         return view('about');
+    }
+    public function shop(){
+        return view('frontend.shop', [
+            'categorices' => Category::all(),
+            'products' => Product::all()
+        ]);
     }
 }

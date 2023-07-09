@@ -109,7 +109,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label>Product Short Description</label>
-                            <textarea name="product_short_description" id="" rows="4" class="form-control"></textarea>
+                            <textarea id="product_short_description" name="product_short_description" id="" rows="4" class="form-control"></textarea>
                         </div>
                         <div class="form-group mb-3">
                             <label>Product Long Description</label>

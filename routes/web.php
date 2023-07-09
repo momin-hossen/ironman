@@ -23,7 +23,8 @@ Route::get('/', [FrontendController::class, 'index'])->name('welcome');
 Route::get('product/details/{slug}', [FrontendController::class, 'productdetails'])->name('productdetails');
 Route::get('contact', [FrontendController::class, 'contact'])->name('contact');
 Route::post('contact/insert', [FrontendController::class, 'contactinsert'])->name('contactinsert');
-Route::get('about', [FrontendController::class, 'about'])->name('about');
+Route::get('about', [FrontendController::class, 'about'])->name('about')->name('about');
+Route::get('shop', [FrontendController::class, 'shop'])->name('shop')->name('shop');
 
 
 // CategoryController
