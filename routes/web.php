@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProductController;
@@ -23,8 +24,8 @@ Route::get('/', [FrontendController::class, 'index'])->name('welcome');
 Route::get('product/details/{slug}', [FrontendController::class, 'productdetails'])->name('productdetails');
 Route::get('contact', [FrontendController::class, 'contact'])->name('contact');
 Route::post('contact/insert', [FrontendController::class, 'contactinsert'])->name('contactinsert');
-Route::get('about', [FrontendController::class, 'about'])->name('about')->name('about');
-Route::get('shop', [FrontendController::class, 'shop'])->name('shop')->name('shop');
+Route::get('about', [FrontendController::class, 'about'])->name('about');
+Route::get('shop', [FrontendController::class, 'shop'])->name('shop');
 
 
 // CategoryController
@@ -49,6 +50,8 @@ Route::post('change/profile/photo', [ProfileController::class, 'changeprofilepho
 // ProductController
 Route::resource('product', ProductController::class);
 
+// CartController
+Route::post('cart/store', [CartController::class, 'store'])->name('cart.store');
 
 // HomeController
 Auth::routes(['verify' => true]);

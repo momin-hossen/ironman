@@ -7,10 +7,12 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Product;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cookie;
 
 class FrontendController extends Controller
 {
     public function index(){
+        
         return view('frontend.index', [
             'active_products' => Product::latest()->get(),
             'active_categories' => Category::all()

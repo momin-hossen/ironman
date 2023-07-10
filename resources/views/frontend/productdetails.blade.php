@@ -62,10 +62,14 @@
                         </div>
                         <p>{{ $product_info->product_short_description }}</p>
                         <ul class="input-style">
-                            <li class="quantity cart-plus-minus">
-                                <input type="text" value="1" />
-                            </li>
-                            <li><a href="cart.html">Add to Cart</a></li>
+                            <form action="{{ route('cart.store') }}" method="post">
+                                @csrf
+                                <li class="quantity cart-plus-minus">
+                                    <input type="hidden" value="{{ $product_info->id }}" name="product_id">
+                                    <input type="text" value="1" name="product_quantity">
+                                </li>
+                                <li><button type="submit" class="btn btn-danger">Add to Cart</button></li>
+                            </form>
                         </ul>
                         <ul class="cetagory">
                             <li>Category :</li>
