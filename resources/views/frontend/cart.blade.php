@@ -23,6 +23,11 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
+                @if (session('update_status'))
+                    <div class="alert alert-success">
+                        {{ session('update_status') }}
+                    </div>
+                @endif
                 @if (session('remove_status'))
                     <div class="alert alert-warning">
                         {{ session('remove_status') }}
@@ -44,11 +49,22 @@
                         <tbody>
                             @php
                                 $cart_sub_total = 0;
+                                $flag = 0;
                             @endphp
                             @forelse (cart_items() as $cart_item)
-                            <tr>
+                            <tr class="{{ ($cart_item->product->product_quantity < $cart_item->product_quantity) ? 'bg-danger':'' }}">
                                 <td class="images"><img src="{{ asset('uploads/product_photos') }}/{{ $cart_item->product->product_thumbnail_photo }}" alt=""></td>
-                                <td class="product"><a href="{{ url('product/details') }}/{{ $cart_item->product->slug }}" target="_blank">{{ $cart_item->product->product_name }}</a></td>
+                                <td class="product">
+                                    <a href="{{ url('product/details') }}/{{ $cart_item->product->slug }}" target="_blank">{{ $cart_item->product->product_name }}</a>
+                                    <br>
+                                    @if ($cart_item->product->product_quantity < $cart_item->product_quantity)
+                                        <span>Available Quantity is : {{ $cart_item->product->product_quantity }}. You have to deletethe product or reduce it to continue</span>
+                                        @php
+                                            $flag = 1;
+                                        @endphp
+                                    @endif
+                                    
+                                </td>
                                 <td class="ptice">${{ $cart_item->product->product_price }}</td>
                                 <td class="quantity cart-plus-minus">
                                     <input type="text" value="{{ $cart_item->product_quantity }}" name="product_info[{{ $cart_item->id }}]">
@@ -93,7 +109,11 @@
                                     <li><span class="pull-left">Subtotal </span>${{ $cart_sub_total }}</li>
                                     <li><span class="pull-left"> Total </span> $---</li>
                                 </ul>
+                                @if ($flag == 1)
+                                <a>Please solve the issue first</a>
+                                @else
                                 <a href="checkout.html">Proceed to Checkout</a>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -52,6 +52,6 @@ class CartController extends Controller
                 'product_quantity' => $product_quantity
             ]);
         }
-        return back();
+        return back()->with('update_status', 'Product update from cart!');
     }
 }
