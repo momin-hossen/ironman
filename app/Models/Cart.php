@@ -10,4 +10,8 @@ class Cart extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    function product(){
+        return $this->belongsTo('App\Models\Product');
+    }
 }

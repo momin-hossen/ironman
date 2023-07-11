@@ -30,7 +30,7 @@ class CartController extends Controller
             'created_at' => Carbon::now()
            ]);
         }
-        
+        return back();
         
     }
 }

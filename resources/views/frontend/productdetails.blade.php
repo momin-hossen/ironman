@@ -64,8 +64,8 @@
                         <ul class="input-style">
                             <form action="{{ route('cart.store') }}" method="post">
                                 @csrf
+                                <input type="hidden" value="{{ $product_info->id }}" name="product_id">
                                 <li class="quantity cart-plus-minus">
-                                    <input type="hidden" value="{{ $product_info->id }}" name="product_id">
                                     <input type="text" value="1" name="product_quantity">
                                 </li>
                                 <li><button type="submit" class="btn btn-danger">Add to Cart</button></li>
