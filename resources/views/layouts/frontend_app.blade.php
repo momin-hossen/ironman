@@ -171,13 +171,14 @@
                                                 @php
                                                     $sub_total = $sub_total + ($cart_item->product_quantity * $cart_item->product->product_price)
                                                 @endphp
-                                                <i class="fa fa-times"></i>
+                                                <a href="{{ route('cart.remove', $cart_item->id) }}"><i class="fa fa-times"></i></a>
+                                                
                                             </div>
                                         </li>
                                     @endforeach
                                     <li>Subtotol: <span class="pull-right">${{ $sub_total }}</span></li>
                                     <li>
-                                        <button>Check Out</button>
+                                        <a href="{{ route('cart.index') }}" class="btn btn-danger" >Go To Cart</a>
                                     </li>
                                 </ul>
                             </li>

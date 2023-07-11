@@ -10,7 +10,7 @@ class Cart extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
+    protected $fillable = ['product_quantity'];
     function product(){
         return $this->belongsTo('App\Models\Product');
     }

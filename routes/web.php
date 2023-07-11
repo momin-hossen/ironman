@@ -51,7 +51,10 @@ Route::post('change/profile/photo', [ProfileController::class, 'changeprofilepho
 Route::resource('product', ProductController::class);
 
 // CartController
+Route::get('cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('cart/store', [CartController::class, 'store'])->name('cart.store');
+Route::get('cart/remove/{cart_id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
 
 // HomeController
 Auth::routes(['verify' => true]);

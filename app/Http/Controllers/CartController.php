@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Cookie;
 
 class CartController extends Controller
 {
+    public function index()
+    {
+      return view('frontend.cart'); 
+    }
+
     public function store(Request $request)
     {
         if (Cookie::get('g_cart_id')) {
@@ -32,5 +37,21 @@ class CartController extends Controller
         }
         return back();
         
+    }
+    public function remove($cart_id)
+    {
+        Cart::find($cart_id)->delete();
+        return back()->with('remove_status', 'Product remove from cart!');
+    }
+    public function update(Request $request)
+    {
+        foreach ($request->product_info as $cart_id => $product_quantity) {
+            echo "<br>";
+            echo $cart_id;
+            Cart::find($cart_id)->update([
+                'product_quantity' => $product_quantity
+            ]);
+        }
+        return back();
     }
 }
