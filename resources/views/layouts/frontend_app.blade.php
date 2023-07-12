@@ -406,6 +406,7 @@
     <script src="{{ asset('frontend_asset') }}/js/jquery-ui.min.js"></script>
     <!-- main js -->
     <script src="{{ asset('frontend_asset') }}/js/scripts.js"></script>
+    @yield('footer_scripts')
 </body>
 
 

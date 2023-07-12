@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -52,6 +53,7 @@ Route::resource('product', ProductController::class);
 
 // CartController
 Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('cart/{coupon_name}', [CartController::class, 'index'])->name('cart.coupon');
 Route::post('cart/store', [CartController::class, 'store'])->name('cart.store');
 Route::get('cart/remove/{cart_id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
@@ -62,4 +64,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('send/newsletter', [App\Http\Controllers\HomeController::class, 'sendnewsletter'])->name('sendnewsletter');
 Route::get('contact/upload/download/{contact_id}', [App\Http\Controllers\HomeController::class, 'contactuploaddownload'])->name('contactuploaddownload');
 
-
+// CouponController
+Route::resource('coupon', CouponController::class);
