@@ -5,10 +5,12 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\GithubController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,3 +74,9 @@ Route::resource('coupon', CouponController::class);
 
 // CustomerController
 Route::get('customer/home', [CustomerController::class, 'home'])->name('customerhome');
+
+// GithubController
+// Route::get('login/github', 'Auth\LoginController@redirectToProvider');
+// Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('login/github', [GithubController::class, 'redirectToProvider'])->name('redirect');
+Route::get('login/github/callback', [GithubController::class, 'handleProviderCallback'])->name('user');

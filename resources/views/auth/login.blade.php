@@ -67,6 +67,8 @@
                                     <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
                                 </div>
                             </form><!-- form -->
+                            <a href="{{ url('login/github') }}" class="btn btn-lg btn-secondary btn-block mt-2"><em class="icon ni ni-github"></em>Login With Github</a>
+                            <button type="button" class="btn btn-lg btn-danger btn-block mt-2"><em class="icon ni ni-google"></em>Login With Google</button>
                             
                         </div><!-- .nk-block -->
                         <div class="nk-block nk-auth-footer">
