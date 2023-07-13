@@ -17,6 +17,13 @@
                                 <div class="card">
                                     <div class="card-header">
                                         {{ __('Dashboard') }}
+                                        <h4>
+                                            @if (Auth::user()->role == 1)
+                                                you are admin
+                                                @else
+                                                you are customer
+                                            @endif
+                                        </h4>
                                         <h1>Total users: {{ $total_users }}</h1>
                                     </div>
                                     <div class="card-body">

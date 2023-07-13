@@ -12,6 +12,11 @@ use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('checkrole');
+    }
     public function addcategory(){
         return view('admin.category.index',[
             'categories' => Category::all(),

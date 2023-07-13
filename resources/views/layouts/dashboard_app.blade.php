@@ -45,6 +45,7 @@
                     <div class="nk-sidebar-content">
                         <div class="nk-sidebar-menu" data-simplebar>
                             <ul class="nk-menu"><!-- .nk-menu-item -->
+                                @if (Auth::user()->role == 1)
                                 <li class="nk-menu-item">
                                     <a href="{{ url('home') }}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
@@ -63,6 +64,14 @@
                                         <span class="nk-menu-text">Product</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
+                                @else
+                                <li class="nk-menu-item">
+                                    <a href="{{ url('customer/home') }}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+                                        <span class="nk-menu-text">Customer Home</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                @endif
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>

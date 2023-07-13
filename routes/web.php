@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -27,6 +28,8 @@ Route::get('contact', [FrontendController::class, 'contact'])->name('contact');
 Route::post('contact/insert', [FrontendController::class, 'contactinsert'])->name('contactinsert');
 Route::get('about', [FrontendController::class, 'about'])->name('about');
 Route::get('shop', [FrontendController::class, 'shop'])->name('shop');
+Route::get('customer/register', [FrontendController::class, 'customerregister'])->name('customerregister');
+Route::post('customer/register/post', [FrontendController::class, 'customerregisterpost'])->name('customerregisterpost');
 
 
 // CategoryController
@@ -66,3 +69,6 @@ Route::get('contact/upload/download/{contact_id}', [App\Http\Controllers\HomeCon
 
 // CouponController
 Route::resource('coupon', CouponController::class);
+
+// CustomerController
+Route::get('customer/home', [CustomerController::class, 'home'])->name('customerhome');
