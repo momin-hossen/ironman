@@ -77,8 +77,9 @@ Route::resource('coupon', CouponController::class);
 Route::get('customer/home', [CustomerController::class, 'home'])->name('customerhome');
 
 
-// CustomerController
+// CheckoutController
 Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('checkout/post', [CheckoutController::class, 'checkoutpost'])->name('checkout.post');
 
 
 // GithubController
