@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontendController;
@@ -75,8 +76,11 @@ Route::resource('coupon', CouponController::class);
 // CustomerController
 Route::get('customer/home', [CustomerController::class, 'home'])->name('customerhome');
 
+
+// CustomerController
+Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+
+
 // GithubController
-// Route::get('login/github', 'Auth\LoginController@redirectToProvider');
-// Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
 Route::get('login/github', [GithubController::class, 'redirectToProvider'])->name('redirect');
 Route::get('login/github/callback', [GithubController::class, 'handleProviderCallback'])->name('user');

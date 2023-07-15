@@ -116,14 +116,20 @@
                                 <h3>Cart Totals</h3>
                                 <ul>
                                     <li><span class="pull-left">Subtotal </span>${{ $cart_sub_total }}</li>
+                                    @php
+                                        session(['cart_sub_total' => $cart_sub_total]);
+                                    @endphp
                                     <li><span class="pull-left">Discount(%) </span>{{ $discount_amount }}%</li>
                                     <li><span class="pull-left">Discount </span>${{ ($cart_sub_total * $discount_amount)/100 }}</li>
+                                    @php
+                                        session(['discount_amount' => ($cart_sub_total * $discount_amount)/100]);
+                                    @endphp
                                     <li><span class="pull-left"> Total </span> ${{ $cart_sub_total - (($cart_sub_total * $discount_amount)/100) }}</li>
                                 </ul>
                                 @if ($flag == 1)
                                 <a>Please solve the issue first</a>
                                 @else
-                                <a href="checkout.html">Proceed to Checkout</a>
+                                <a href="{{ url('checkout') }}">Proceed to Checkout</a>
                                 @endif
                             </div>
                         </div>
