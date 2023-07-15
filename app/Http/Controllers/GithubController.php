@@ -31,7 +31,7 @@ class GithubController extends Controller
             
         }
         
-        if (Auth::attempt(['email' => $user->getEmail(), 'password' => 'abc@123'])) { // Ey line a vul ase. video dekh valo kore.assa vai abar dekhtasi
+        if (Auth::attempt(['email' => $user->getEmail(), 'password' => 'abc@123'])) { 
             return redirect('customer/home');
         }
         return 'íssues here';
