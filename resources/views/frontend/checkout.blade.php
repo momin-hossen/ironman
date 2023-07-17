@@ -42,30 +42,20 @@
                             </div>
                             <div class="col-sm-6 col-12">
                                 <p>Country *</p>
-                                <select id="s_country" name="country_id">
-                                    <option value="1">Select a country</option>
-                                    <option value="2">bangladesh</option>
-                                    <option value="3">Algeria</option>
-                                    <option value="4">Afghanistan</option>
-                                    <option value="5">Ghana</option>
-                                    <option value="6">Albania</option>
-                                    <option value="7">Bahrain</option>
-                                    <option value="8">Colombia</option>
-                                    <option value="9">Dominican Republic</option>
+                                <select id="country_list_1" name="country_id">
+                                    <option value="">Select a country</option>
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-sm-6 col-12">
                                 <p>City *</p>
                                 <select id="s_country" name="city_id">
                                     <option value="1">Select a City</option>
-                                    <option value="2">bangladesh</option>
-                                    <option value="3">Algeria</option>
-                                    <option value="4">Afghanistan</option>
-                                    <option value="5">Ghana</option>
-                                    <option value="6">Albania</option>
-                                    <option value="7">Bahrain</option>
-                                    <option value="8">Colombia</option>
-                                    <option value="9">Dominican Republic</option>
+                                    {{-- @foreach ($cities as $city)
+                                        <option value="2">{{ $city->name }}</option>
+                                    @endforeach --}}
                                 </select>
                             </div>
                             <div class="col-12">
@@ -73,52 +63,42 @@
                                 <input type="text" name="address">
                             </div>
                             <div class="col-12">
-                                <input id="toggle2" type="checkbox">
+                                <input id="toggle2" type="checkbox" name="shipping_address_status" value="1">
                                 <label class="fontsize" for="toggle2">Ship to a different address?</label>
                                 <div class="row" id="open2">
                                     <div class="col-12">
                                         <p>Name *</p>
-                                        <input type="text">
+                                        <input type="text" name="shipping_name">
                                     </div>
                                     <div class="col-12">
                                         <p>Email Address *</p>
-                                        <input type="email">
+                                        <input type="email" name="shipping_email">
                                     </div>
                                     <div class="col-12">
                                         <p>Phone No. *</p>
-                                        <input type="text">
+                                        <input type="text" name="shipping_phone_number">
                                     </div>
                                     <div class="col-12">
                                         <p>Country *</p>
-                                        <select id="s_country">
+                                        <select id="s_country"name="shipping_country_id">
                                             <option value="1">Select a country</option>
-                                            <option value="2">bangladesh</option>
-                                            <option value="3">Algeria</option>
-                                            <option value="4">Afghanistan</option>
-                                            <option value="5">Ghana</option>
-                                            <option value="6">Albania</option>
-                                            <option value="7">Bahrain</option>
-                                            <option value="8">Colombia</option>
-                                            <option value="9">Dominican Republic</option>
+                                            {{-- @foreach ($countriies as $country)
+                                                <option value="2">{{ $country->name }}</option>
+                                            @endforeach --}}
                                         </select>
                                     </div>
                                     <div class="col-12">
                                         <p>City *</p>
-                                        <select id="s_country">
+                                        <select id="s_country" name="shipping_city_id">
                                             <option value="1">Select a City</option>
-                                            <option value="2">bangladesh</option>
-                                            <option value="3">Algeria</option>
-                                            <option value="4">Afghanistan</option>
-                                            <option value="5">Ghana</option>
-                                            <option value="6">Albania</option>
-                                            <option value="7">Bahrain</option>
-                                            <option value="8">Colombia</option>
-                                            <option value="9">Dominican Republic</option>
+                                            {{-- @foreach ($cities as $city)
+                                                <option value="2">{{ $city->name }}</option>
+                                            @endforeach --}}
                                         </select>
                                     </div>
                                     <div class="col-12">
                                         <p>Your Address *</p>
-                                        <input type="text">
+                                        <input type="text" name="shipping_address">
                                     </div>
                                 </div>
                             </div>
@@ -158,4 +138,31 @@
     </div>
 </div>
 <!-- checkout-area end -->
+@endsection
+
+@section('footer_scripts')
+    <script>
+        $(document).ready(function() {
+            $('#country_list_1').select2();
+            $('#country_list_1').change(function(){
+                var country_id = $(this).val();
+                // ajax setup
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                // ajax response start
+                $.ajax({
+                    type : 'GET',
+                    url : 'get/city/list/ajax/'+country_id,
+                    success : function (data) {
+                        console.log(data)
+                    }
+                });
+                // ajax response end
+            });
+        });
+    </script>
 @endsection

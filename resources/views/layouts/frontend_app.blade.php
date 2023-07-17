@@ -6,6 +6,7 @@
     <title>Tohoney - Home Page</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" type="image/png" href="{{ asset('frontend_asset') }}/images/favicon.png">
     <!-- Place favicon.ico in the root directory -->
     <!-- all css here -->
@@ -29,6 +30,8 @@
     <link rel="stylesheet" href="{{ asset('frontend_asset') }}/css/responsive.css">
     <!-- modernizr css -->
     <script src="{{ asset('frontend_asset') }}/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -406,6 +409,7 @@
     <script src="{{ asset('frontend_asset') }}/js/jquery-ui.min.js"></script>
     <!-- main js -->
     <script src="{{ asset('frontend_asset') }}/js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     @yield('footer_scripts')
 </body>
 

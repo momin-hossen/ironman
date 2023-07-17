@@ -80,6 +80,7 @@ Route::get('customer/home', [CustomerController::class, 'home'])->name('customer
 // CheckoutController
 Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('checkout/post', [CheckoutController::class, 'checkoutpost'])->name('checkout.post');
+Route::get('get/city/list/ajax/{country_id}', [CheckoutController::class, 'getcitylistajax'])->name('get.city.list.ajax');
 
 
 // GithubController
