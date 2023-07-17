@@ -51,11 +51,8 @@
                             </div>
                             <div class="col-sm-6 col-12">
                                 <p>City *</p>
-                                <select id="s_country" name="city_id">
-                                    <option value="1">Select a City</option>
-                                    {{-- @foreach ($cities as $city)
-                                        <option value="2">{{ $city->name }}</option>
-                                    @endforeach --}}
+                                <select id="city_list_1" name="city_id">
+                                    <option value="">Select a City</option>
                                 </select>
                             </div>
                             <div class="col-12">
@@ -80,20 +77,17 @@
                                     </div>
                                     <div class="col-12">
                                         <p>Country *</p>
-                                        <select id="s_country"name="shipping_country_id">
-                                            <option value="1">Select a country</option>
-                                            {{-- @foreach ($countriies as $country)
-                                                <option value="2">{{ $country->name }}</option>
-                                            @endforeach --}}
+                                        <select id="country_list_2" name="shipping_country_id">
+                                            <option value="">Select a country</option>
+                                            @foreach ($countries as $country)
+                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-12">
                                         <p>City *</p>
-                                        <select id="s_country" name="shipping_city_id">
-                                            <option value="1">Select a City</option>
-                                            {{-- @foreach ($cities as $city)
-                                                <option value="2">{{ $city->name }}</option>
-                                            @endforeach --}}
+                                        <select id="city_list_2" name="shipping_city_id">
+                                            <option value="">Select a City</option>
                                         </select>
                                     </div>
                                     <div class="col-12">
@@ -144,6 +138,9 @@
     <script>
         $(document).ready(function() {
             $('#country_list_1').select2();
+            $('#city_list_1').select2();
+            $('#country_list_2').select2();
+            $('#city_list_2').select2();
             $('#country_list_1').change(function(){
                 var country_id = $(this).val();
                 // ajax setup
@@ -155,10 +152,32 @@
 
                 // ajax response start
                 $.ajax({
-                    type : 'GET',
-                    url : 'get/city/list/ajax/'+country_id,
+                    type : 'POST',
+                    url : 'get/city/list/ajax',
+                    data : {country_id:country_id},
                     success : function (data) {
-                        console.log(data)
+                        $('#city_list_1').html(data);
+                    }
+                });
+                // ajax response end
+            });
+
+            $('#country_list_2').change(function(){
+                var country_id = $(this).val();
+                // ajax setup
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                // ajax response start
+                $.ajax({
+                    type : 'POST',
+                    url : 'get/city/list/ajax',
+                    data : {country_id:country_id},
+                    success : function (data) {
+                        $('#city_list_2').html(data);
                     }
                 });
                 // ajax response end

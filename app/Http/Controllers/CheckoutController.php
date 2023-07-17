@@ -25,11 +25,11 @@ class CheckoutController extends Controller
             'countries' => Country::all(),
         ]);
     }
-    public function getcitylistajax($country_id){
+    public function getcitylistajax(Request $request){
         $stringTOsend ="";  
-        return $citis = City::where('country_id', $country_id)->get();
+        $citis = City::where('country_id', $request->country_id)->get();
         foreach ($citis as $city) {
-            $stringTOsend .= $city->name;
+             $stringTOsend .= "<option value='".$city->id."'>".$city->name."</option>";
         }
         return $stringTOsend;
     }
