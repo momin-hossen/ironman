@@ -120,8 +120,9 @@
                                         session(['cart_sub_total' => $cart_sub_total]);
                                     @endphp
                                     <li><span class="pull-left">Discount(%) </span>{{ $discount_amount }}%</li>
-                                    <li><span class="pull-left">Discount </span>${{ ($cart_sub_total * $discount_amount)/100 }}</li>
+                                    <li><span class="pull-left">Discount ({{ ($coupon_name) ? $coupon_name:'-' }}) </span>${{ ($cart_sub_total * $discount_amount)/100 }}</li>
                                     @php
+                                        session(['coupon_name' => ($coupon_name) ? $coupon_name:'-']);
                                         session(['discount_amount' => ($cart_sub_total * $discount_amount)/100]);
                                     @endphp
                                     <li><span class="pull-left"> Total </span> ${{ $cart_sub_total - (($cart_sub_total * $discount_amount)/100) }}</li>

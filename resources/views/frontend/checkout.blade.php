@@ -111,7 +111,7 @@
                         <li>{{ $cart_item->product->product_name }}  x  {{ $cart_item->product_quantity }}<span class="pull-right">${{ $cart_item->product->product_price * $cart_item->product_quantity}}</span></li>
                         @endforeach
                         <li>Subtotal <span class="pull-right"><strong>${{ session('cart_sub_total') }}</strong></span></li>
-                        <li>Discount <span class="pull-right">${{ session('discount_amount') }}</span></li>
+                        <li>Discount ({{ session('coupon_name') }}) <span class="pull-right">${{ session('discount_amount') }}</span></li>
                         <li>Total<span class="pull-right">${{ session('cart_sub_total') - session('discount_amount') }}</span></li>
                     </ul>
                     <ul class="payment-method">
