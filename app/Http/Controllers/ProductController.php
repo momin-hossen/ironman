@@ -20,7 +20,7 @@ class ProductController extends Controller
     {
         return view('admin.product.index', [
             'active_categories' => Category::all(),
-            'products' => Product::all(),
+            'products' => Product::with('onetoonerelationwithcategorytable')->get(),
         ]);
     }
 

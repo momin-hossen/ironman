@@ -12,8 +12,10 @@ use App\Models\Product;
 use App\Models\Shipping;
 use App\Models\Order_detail;
 use Illuminate\Http\Request;
+use App\Mail\PurchaseConfirm;
 use PhpParser\Node\Stmt\Echo_;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -95,6 +97,7 @@ class CheckoutController extends Controller
             // Delete from cart table
             $cart_item->forceDelete();
         }
+        Mail::to($request->email)->send(new PurchaseConfirm);
         return redirect('cart');  
     }
 }

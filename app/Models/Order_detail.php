@@ -10,4 +10,8 @@ class Order_detail extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    public function product(){
+        return $this->belongsTo('App\Models\Product');
+    }
 }
