@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\City;
+use App\Models\User;
+use App\Models\Order;
 use App\Models\Billing;
 use App\Models\Country;
-use App\Models\City;
+use App\Models\Product;
 use App\Models\Shipping;
+use App\Models\Order_detail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use Carbon\Carbon;
 use PhpParser\Node\Stmt\Echo_;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -35,7 +38,7 @@ class CheckoutController extends Controller
     }
     public function checkoutpost(Request $request){
         if (isset($request->shipping_address_status)) {
-            Shipping::insert([
+            $shipping_id = Shipping::insertGetId([
                 'name' => $request->shipping_name,
                 'email' => $request->shipping_email,
                 'phone_number' => $request->shipping_phone_number,
@@ -47,7 +50,7 @@ class CheckoutController extends Controller
         }
         else {
             
-            Shipping::insert([
+            $shipping_id = Shipping::insertGetId([
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone_number' => $request->phone_number,
@@ -57,7 +60,7 @@ class CheckoutController extends Controller
                 'created_at' => Carbon::now()
             ]);
         }
-        Billing::insert([
+        $billing_id = Billing::insertGetId([
             'name' => $request->name,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
@@ -67,7 +70,31 @@ class CheckoutController extends Controller
             'notes' => $request->notes,
             'created_at' => Carbon::now()
         ]);
-        
-        echo "ok";
+        $order_id = Order::insertGetId([
+            'user_id' => Auth::id(),
+            'sub_total' => session('cart_sub_total'),
+            'discount_amount' => session('discount_amount'),
+            'coupon_name' => session('coupon_name'),
+            'total' => (session('cart_sub_total') - session('discount_amount')),
+            'payment_option' => $request->payment_option,
+            'billing_id' => $billing_id,
+            'shipping_id' => $shipping_id,
+            'created_at' => Carbon::now()
+        ]);
+        foreach (cart_items() as $cart_item) {
+            Order_detail::insert([
+                'order_id' => $order_id,
+                'product_id' => $cart_item->product_id,
+                'product_quantity' => $cart_item->product_quantity,
+                'product_price' => $cart_item->product->product_price,
+                'created_at' => Carbon::now()
+            ]);
+            // product table decrement
+            Product::find($cart_item->product_id)->decrement('product_quantity', $cart_item->product_quantity);
+
+            // Delete from cart table
+            $cart_item->forceDelete();
+        }
+        return redirect('cart');  
     }
 }

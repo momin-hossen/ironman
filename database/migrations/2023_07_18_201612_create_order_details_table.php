@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
+            $table->integer('order_id');
+            $table->integer('product_id');
+            $table->integer('product_quantity');
+            $table->integer('product_price');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

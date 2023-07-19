@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->float('sub_total');
+            $table->float('discount_amount')->default(0);
+            $table->string('coupon_name');
+            $table->float('total');
+            $table->integer('payment_option');
+            $table->integer('billing_id');
+            $table->integer('shipping_id');
             $table->timestamps();
             $table->softDeletes();
         });
