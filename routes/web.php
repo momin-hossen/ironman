@@ -81,6 +81,8 @@ Route::get('customer/home', [CustomerController::class, 'home'])->name('customer
 Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('checkout/post', [CheckoutController::class, 'checkoutpost'])->name('checkout.post');
 Route::post('get/city/list/ajax', [CheckoutController::class, 'getcitylistajax'])->name('get.city.list.ajax');
+// Test
+Route::get('test/mail', [CheckoutController::class, 'testmail'])->name('test.mail');
 
 
 // GithubController

@@ -97,7 +97,14 @@ class CheckoutController extends Controller
             // Delete from cart table
             $cart_item->forceDelete();
         }
-        Mail::to($request->email)->send(new PurchaseConfirm);
+        $order_details = Order_detail::where('order_id', $order_id)->get();
+        Mail::to($request->email)->send(new PurchaseConfirm($order_details));
         return redirect('cart');  
+    }
+
+    public function testmail(){
+        // Mail::to($request->email)->send(new PurchaseConfirm);
+        $order_details = Order_detail::where('order_id', 1)->get();
+        return(new PurchaseConfirm($order_details))->render();
     }
 }

@@ -16,9 +16,10 @@ class PurchaseConfirm extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public $order_detail_info = "";
+    public function __construct ($order_details)
     {
-        //
+        $this->order_detail_info = $order_details;
     }
 
     /**
@@ -34,11 +35,17 @@ class PurchaseConfirm extends Mailable
     /**
      * Get the message content definition.
      */
-    public function content(): Content
+    // public function content(): Content
+    // {
+    //     return new Content(
+    //         view: 'mail.purchaseconfirm',
+    //     );
+    // }
+    public function build()
     {
-        return new Content(
-            view: 'mail.purchaseconfirm',
-        );
+        return $this->view('mail.purchaseconfirm', [
+            'final_order_details' => $this->order_detail_info
+        ]);
     }
 
     /**
