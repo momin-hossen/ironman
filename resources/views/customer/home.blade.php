@@ -39,6 +39,7 @@
                         <th>Discount Amount</th>
                         <th>Coupon Name</th>
                         <th>Total</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -52,10 +53,7 @@
                         <td>{{ $order->coupon_name }}</td>
                         <td>{{ $order->total }}</td>
                         <td>
-                            {{-- @if ($contact->contact_attachement)
-                            <a href="{{ url('contact/upload/download') }}/{{ $contact->id }}"><em class="icon ni ni-download"></em></a>
-                            <a target="_blank" href="{{ asset('storage') }}/{{ $contact->contact_attachement }}"><em class="icon ni ni-file"></em></a>
-                            @endif --}}
+                            <a href="{{ url('customer/invoice/download') }}/{{ $order->id }}"><em class="icon ni ni-download"></em> Download Invoice</a>
                         </td>
                       </tr>
                       <tr>

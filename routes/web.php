@@ -75,6 +75,7 @@ Route::resource('coupon', CouponController::class);
 
 // CustomerController
 Route::get('customer/home', [CustomerController::class, 'home'])->name('customerhome');
+Route::get('customer/invoice/download/{order_id}', [CustomerController::class, 'customerinvoicedownload'])->name('customer.invoice.download');
 
 
 // CheckoutController
