@@ -33,6 +33,11 @@
                         {{ session('remove_status') }}
                     </div>
                 @endif
+                @if (session('success'))
+                    <div class="alert alert-warning">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 @if ($error_message != "")
                     <div class="alert alert-danger">
                         {{ $error_message }}

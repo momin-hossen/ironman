@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel - Stripe Payment Gateway Integration Example - ItSolutionStuff.com</title>
+    <title>Ironman</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -9,7 +9,8 @@
     
 <div class="container">
     
-    <h1>Laravel - Stripe Payment Gateway Integration Example <br/> ItSolutionStuff.com</h1>
+    <h1 class="text-center">Paymant Page - Stripe</h1>
+    <h2 class="text-center">Order ID: {{ session('order_id_from_checkout_page') }}</h2>
     
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -78,7 +79,7 @@
     
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($100)</button>
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now (${{ session('cart_sub_total') - session('discount_amount') }})</button>
                             </div>
                         </div>
                             

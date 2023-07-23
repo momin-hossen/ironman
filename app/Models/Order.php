@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
+    protected $fillable = ['payment_status'];
     use HasFactory;
     use SoftDeletes;
 

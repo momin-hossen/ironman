@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('payment_option');
             $table->integer('billing_id');
             $table->integer('shipping_id');
+            $table->integer('payment_stutas')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
