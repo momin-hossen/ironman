@@ -9,6 +9,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\GithubController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StripePaymentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -89,3 +90,9 @@ Route::get('test/mail', [CheckoutController::class, 'testmail'])->name('test.mai
 // GithubController
 Route::get('login/github', [GithubController::class, 'redirectToProvider'])->name('redirect');
 Route::get('login/github/callback', [GithubController::class, 'handleProviderCallback'])->name('user');
+
+
+Route::controller(StripePaymentController::class)->group(function(){
+    Route::get('stripe', 'stripe');
+    Route::post('stripe', 'stripePost')->name('stripe.post');
+});
