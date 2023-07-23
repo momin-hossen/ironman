@@ -11,7 +11,12 @@ class StripePaymentController extends Controller
 {
     public function stripe()
     {
-        return view('test.stripe');
+        if (session('order_id_from_checkout_page')) {
+            return view('test.stripe');
+        }
+        else {
+            abort(404);
+        }
     }
     
     /**
@@ -31,8 +36,15 @@ class StripePaymentController extends Controller
         ]);
       
         Session::flash('success', 'Payment successful!');
+
         Order::find(session('order_id_from_checkout_page'))->update([
             'payment_status' => 2
+        ]);
+        session([
+            'cart_sub_total' => '',
+            'coupon_name' => '',
+            'discount_amount' => '',
+            'order_id_from_checkout_page' => ''
         ]);
         return redirect('cart');
     }

@@ -35,6 +35,7 @@
                         <th>SL. No</th>
                         <th>Date</th>
                         <th>Payment Method</th>
+                        <th>Payment Status</th>
                         <th>Sub Total</th>
                         <th>Discount Amount</th>
                         <th>Coupon Name</th>
@@ -47,7 +48,20 @@
                       <tr>
                         <td>{{ $loop->index+1 }}</td>
                         <td>{{ $order->created_at }}</td>
-                        <td>{{ $order->payment_option }}</td>
+                        <td>
+                            @if ($order->payment_option == 1)
+                                Cash on Delivery
+                            @else  
+                                Card  
+                            @endif
+                        </td>
+                        <td>
+                            @if ($order->payment_option == 1)
+                                <span class="badge badge-danger">Unpaid</span>
+                            @else  
+                                <span class="badge badge-success">Paid</span>
+                            @endif
+                        </td>
                         <td>{{ $order->sub_total }}</td>
                         <td>{{ $order->discount_amount }}</td>
                         <td>{{ $order->coupon_name }}</td>
