@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->float('sub_total');
             $table->float('discount_amount')->default(0);
-            $table->string('coupon_name');
+            $table->string('coupon_name'); 
             $table->float('total');
             $table->integer('payment_option');
             $table->integer('billing_id');
