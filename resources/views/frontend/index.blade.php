@@ -178,15 +178,15 @@
                         </div>
                         <div class="product-content">
                             <h3><a href="{{ url('product/details') }}/{{ $active_product->slug }}">{{ $active_product->product_name }}</a></h3>
-                            <p class="pull-left">{{ $active_product->product_price }}
-
+                            <p class="pull-left">${{ $active_product->product_price }}
                             </p>
                             <ul class="pull-right d-flex">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star-half-o"></i></li>
+                                @if (average_star($active_product->id) == 0)
+                                    No Review Yet
+                                @endif
+                                @for ($i = 1; $i <= average_star($active_product->id); $i++)
+                                    <li><i class="fa fa-star"></i></li>
+                                @endfor
                             </ul>
                         </div>
                     </div>

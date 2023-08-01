@@ -52,12 +52,14 @@
                         <div class="rating-wrap fix">
                             <span class="pull-left">${{ $product_info->product_price }}</span>
                             <ul class="rating pull-right">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li>(05 Customar Review)</li>
+                                {{-- {{ average_star($product_info->id) }} --}}
+                                @if (average_star($product_info->id) == 0)
+                                    No Review Yet
+                                @endif
+                                @for ($i = 1; $i <= average_star($product_info->id); $i++)
+                                    <li><i class="fa fa-star"></i></li>
+                                @endfor
+                                <li>({{ review_customer_count($product_info->id) }} Customar Review)</li>
                             </ul>
                         </div>
                         <p>{{ $product_info->product_short_description }}</p>
