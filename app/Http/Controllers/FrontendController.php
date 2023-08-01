@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Order_detail;
 use App\Models\Contact;
 use App\Models\Product;
 use App\Models\User;
@@ -25,9 +26,22 @@ class FrontendController extends Controller
     {
         $product_info = Product::where('slug', $slug)->firstOrFail();
         $related_products = Product::where('category_id', $product_info->category_id)->where('id', '!=', $product_info->id)->limit(4)->get();
+        $show_review_form = 0;
+        if (Order_detail::where('user_id', Auth::id())->where('product_id', $product_info->id)->whereNull('review')->exists()) {
+            $show_review_form = 1;
+            $order_details_id = Order_detail::where('user_id', Auth::id())->where('product_id', $product_info->id)->whereNull('review')->first()->id;
+        }
+        else {
+            $show_review_form = 2;
+            $order_details_id = 0;
+        }
+        $reviews = Order_detail::where('product_id', $product_info->id)->whereNotNull('review')->get();
         return view('frontend.productdetails', [
             'product_info' => $product_info,
-            'related_products' => $related_products
+            'related_products' => $related_products,
+            'show_review_form' => $show_review_form,
+            'order_details_id' => $order_details_id,
+            'reviews' => $reviews
         ]);
     }
 
@@ -75,5 +89,13 @@ class FrontendController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect('customer/home');
         }
+    }
+
+    public function reviewpost(Request $request){
+        Order_detail::find($request->order_details_id)->update([
+            'stars' => $request->stars,
+            'review' => $request->review
+        ]);
+        return back();
     }
 }

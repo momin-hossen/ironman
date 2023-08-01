@@ -34,6 +34,7 @@ Route::get('about', [FrontendController::class, 'about'])->name('about');
 Route::get('shop', [FrontendController::class, 'shop'])->name('shop');
 Route::get('customer/register', [FrontendController::class, 'customerregister'])->name('customerregister');
 Route::post('customer/register/post', [FrontendController::class, 'customerregisterpost'])->name('customerregisterpost');
+Route::post('review/post', [FrontendController::class, 'reviewpost'])->name('review.post');
 
 
 // CategoryController
