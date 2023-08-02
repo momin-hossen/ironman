@@ -8,9 +8,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    protected $fillable = ['payment_status'];
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'user_id',
+        'sub_total',
+        'discount_amount',
+        'coupon_name',
+        'total',
+        'payment_option',
+        'billing_id',
+        'shipping_id',
+        'payment_stutas',
+    ];
 
     public function order_detail() {
         return $this->hasMany('App\Models\Order_detail');

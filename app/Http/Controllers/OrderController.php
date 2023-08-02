@@ -13,7 +13,7 @@ class OrderController extends Controller
     public function index()
     {
         return view('admin.order.index',[
-            'orders' => Order::all()
+            'orders' => Order::latest()->get()
         ]);
     }
 
@@ -38,7 +38,10 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $order->payment_option = 2;
+        $order->save();
+        return back();
     }
 
     /**
@@ -54,9 +57,6 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        $order->payment_status = 2;
-        $order->save();
-        return back();
     }
 
     /**

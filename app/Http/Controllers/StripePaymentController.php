@@ -38,7 +38,7 @@ class StripePaymentController extends Controller
         Session::flash('success', 'Payment successful!');
 
         Order::find(session('order_id_from_checkout_page'))->update([
-            'payment_status' => 2
+            'payment_option' => 2
         ]);
         session([
             'cart_sub_total' => '',

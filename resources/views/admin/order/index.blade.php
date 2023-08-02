@@ -54,8 +54,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                {{ $order->payment_option }}
-                                                @if ($order->payment_status == 1)
+                                                @if ($order->payment_option == 1)
                                                     <span class="badge badge-danger">Unpaid</span>
                                                 @else  
                                                     <span class="badge badge-success">Paid</span>
@@ -66,12 +65,8 @@
                                             <td>{{ $order->coupon_name }}</td>
                                             <td>{{ $order->total }}</td>
                                             <td>
-                                                @if ($order->payment_status == 1)
-                                                <form action="{{ route('order.update', $order->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <button type="submit" class="btn btn-success btn-sm">Paid</button>
-                                                </form>
+                                                @if ($order->payment_option == 1)
+                                                <a href="{{ route('order.show', $order->id) }}" class="btn btn-success text-light btn-sm">Paid</a>
                                                 @endif
                                                 <a class="btn btn-danger text-light btn-sm">Cencel</a>
                                             </td>

@@ -24,6 +24,10 @@ return new class extends Migration
             $table->integer('payment_stutas')->default(1);
             $table->timestamps();
             $table->softDeletes();
+
+            // payment_status name a kono field oi create koros nai, to oi filed a data insert hobe kmne?
+            // taile mone hoy ata payment option hobe
+            // Field create korsos 1ta instert kortasoso arekta te.
         });
     }
 

@@ -56,7 +56,7 @@
                             @endif
                         </td>
                         <td>
-                            @if ($order->payment_status == 1)
+                            @if ($order->payment_option == 1)
                                 <span class="badge badge-danger">Unpaid</span>
                             @else  
                                 <span class="badge badge-success">Paid</span>
