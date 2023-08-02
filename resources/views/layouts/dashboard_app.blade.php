@@ -64,6 +64,12 @@
                                         <span class="nk-menu-text">Product</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="{{ route('order.index') }}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-building"></em></span>
+                                        <span class="nk-menu-text">Order</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
                                 @else
                                 <li class="nk-menu-item">
                                     <a href="{{ url('customer/home') }}" class="nk-menu-link">
