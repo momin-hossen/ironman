@@ -56,8 +56,10 @@
                                             <td>
                                                 @if ($order->payment_option == 1)
                                                     <span class="badge badge-danger">Unpaid</span>
-                                                @else  
+                                                @elseif ($order->payment_option == 2)
                                                     <span class="badge badge-success">Paid</span>
+                                                @else  
+                                                    <span class="badge badge-warning">Cancel</span>
                                                 @endif
                                             </td>
                                             <td>{{ $order->sub_total }}</td>
@@ -68,7 +70,7 @@
                                                 @if ($order->payment_option == 1)
                                                 <a href="{{ route('order.show', $order->id) }}" class="btn btn-success text-light btn-sm">Paid</a>
                                                 @endif
-                                                <a class="btn btn-danger text-light btn-sm">Cencel</a>
+                                                <a class="btn btn-danger text-light btn-sm" href="{{ route('order.cancel', $order->id) }}">Cancel</a>
                                             </td>
                                         </tr>
                                     @empty

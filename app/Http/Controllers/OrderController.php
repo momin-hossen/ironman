@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\Order_detail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -65,5 +67,16 @@ class OrderController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function cancel($order_id)
+    {
+        $order_details = Order_detail::where('order_id', $order_id)->get();
+        foreach ($order_details as $order_detail) {
+            Product::find($order_detail->product_id)->increment('product_quantity', $order_detail->product_quantity);
+        }
+        Order::find($order_id)->update([
+            'payment_status' => 3
+        ]);
+        return back();
     }
 }

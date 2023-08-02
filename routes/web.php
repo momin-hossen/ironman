@@ -63,6 +63,7 @@ Route::resource('product', ProductController::class);
 
 // OrderController
 Route::resource('order', OrderController::class);
+Route::get('order/cancel/{order_id}', [OrderController::class, 'cancel'])->name('order.cancel');
 
 
 // CartController
